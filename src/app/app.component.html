@@ -1,0 +1,30 @@
+<div class="ui dimmable" >
+  <!-- sidebar:start -->
+  <div app-sidebar></div>
+  <!-- sidebar:end -->
+  <!-- header:start -->
+  <app-header></app-header>
+  <!-- header:end -->
+  <div class="pusher">
+    <div class="full height">
+      <div class="article">
+        <div class="main ui container">
+          <!-- grid:start -->
+          <div class="ui grid">
+            <div class="sixteen wide column">
+              <router-outlet></router-outlet>
+            </div>
+            <!-- <div class="sixteen wide column" *ngIf="false">
+            <app-chat></app-chat>
+          </div> -->
+            <!-- <div class="sixteen wide column" *ngIf="false">
+            <app-card></app-card>
+          </div> -->
+          </div>
+          <!-- grid:end -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui dimmer transition" id="{{isVisible}}" [ngClass]="{ 'visible active': isVisible == true, 'hidden': isVisible==false }"></div>
+</div>

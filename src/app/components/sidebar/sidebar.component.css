@@ -1,0 +1,48 @@
+.ui.left.visible.sidebar {
+  z-index: 1001;
+}
+
+.ui.left.sidebar {
+  transition: all .5s ease, all .5s ease;
+}
+
+.ui.menu a.item {
+  padding: .5em 1.33333333em;
+  color: #323844;
+}
+
+.ui.menu a.item:hover {
+  background: rgba(0, 0, 0, .03);
+  /*color: #ED3125;*/
+}
+
+.ui.vertical.menu .active.item {
+  background: rgba(0, 0, 0, .05);
+  border-radius: 0;
+  box-shadow: none;
+  /*color: #ED3125;*/
+}
+
+.ui.left.sidebar {
+  width: 185px;
+}
+
+.ui.divider {
+  margin: 1rem 1.5em;
+}
+
+.ui.vertical.menu .item>i.icon {
+  width: 1.18em;
+  float: left;
+  margin: 0 1.2em 0 0.5em;
+}
+
+.ui.vertical.menu .item:before {
+  height: 0px;
+}
+
+.ui.vertical.menu .menu .item {
+  background: 0 0;
+  padding: .5em 1.33333333em;
+  font-size: 1em;
+}

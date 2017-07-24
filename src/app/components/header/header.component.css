@@ -1,0 +1,13 @@
+.ui.menu {
+    margin-top: 0rem;
+    border: none;
+    background: #fff;
+}
+
+.main.ui.container > .form > .fields > .field {
+  margin: 20px
+}
+
+.ui.text.menu .item>img:not(.ui){
+  width: 3.5em;
+}

@@ -1,0 +1,46 @@
+<div class="ui left transition vertical sidebar menu" (click)="$event.stopPropagation()" [ngClass]="{ 'uncover visible': isVisible == true }">
+  <div class="item">
+    <a class="ui logo icon image" routerLink="/home" routerLinkActive="active">
+    <img src="assets/img/beats.png">
+  </a>
+  </div>
+  <div class="ui divider"></div>
+
+  <a class="item" routerLink="/browse" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/chat' }">
+    <i class="compass icon"></i>
+    Browse
+  </a>
+  <a class="item" routerLink="/radio" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/user' }">
+    <i class="sound icon"></i>
+    Radio
+  </a>
+
+  <div class="item">
+    <div class="header">YOUR MUSIC</div>
+    <div class="menu">
+
+      <a class="item" routerLink="/songs" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/user' }">
+      <i class="music icon"></i>
+      Songs
+    </a>
+      <a class="item" routerLink="/album" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/user' }">
+      <i class="circle icon"></i>
+      Albums
+    </a>
+      <a class="item" routerLink="/artist" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/user' }">
+      <i class="star icon"></i>
+      Artists
+    </a>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="header">PLAYLIST</div>
+    <div class="menu">
+      <a class="item" routerLink="/playlist" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/user' }">
+      <i class="heart icon"></i>
+      Playlist
+    </a>
+    </div>
+  </div>
+</div>

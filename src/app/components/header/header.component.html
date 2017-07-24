@@ -1,0 +1,61 @@
+<div class="ui text fixed top menu">
+  <a class="item" (click)="sbToggle($event)">
+    <img src="assets/img/Beats-Music-Logo-2.png">
+  </a>
+  <!-- <a class="item" routerLink="/home" [ngClass]="{ 'active selected': aURL == '/home' }">Home</a>
+  <a class="item" routerLink="/chat" [ngClass]="{ 'active selected': aURL == '/chat' }">Chatroom</a>
+  <a class="item" routerLink="/user" [ngClass]="{ 'active selected': aURL == '/user' }">Users</a> -->
+  <div class="right menu">
+    <a class="item" *ngIf="isAuth && !custom" (click)="logout()">Logout</a>
+    <div class="ui item dropdown" suiDropdown *ngIf="custom">
+      <div class="text">
+        <img class="ui avatar image" src="{{user.selected.img}}"> {{user.selected.name}}
+      </div>
+      <i class="dropdown icon"></i>
+      <div class="menu" suiDropdownMenu>
+        <!-- <a class="right item" *ngIf="isAuth" (click)="logout()">Logout</a> -->
+        <div class="item" *ngFor="let item of user.options" (click)="changeUser(item)" [ngClass]="{ 'active selected': user.selected.name == item.name }">
+          <img class="ui avatar image" src="{{item.img}}"> {{item.name}}
+        </div>
+        <a class="item" *ngIf="isAuth" (click)="cLogout()">Logout</a>
+      </div>
+    </div>
+    <div class="ui dropdown item" suiDropdown *ngIf="!isAuth && !custom">
+      Login
+      <i class="dropdown icon"></i>
+      <div class="menu" suiDropdownMenu>
+        <div class="item" (click)="customLogin('Custom User')">Custom</div>
+        <div class="item" (click)="login('Anonymous')">Anonymous</div>
+        <div class="item" (click)="login('Facebook')">Facebook</div>
+        <div class="item" (click)="login('Google')">Google</div>
+        <!-- <div class="item" (click)="login('User')">User</div> -->
+        <div class="item" (click)="open('User')">User</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="header">User Login</div>
+  <!-- <div class="content">
+    <p>{{ context.data }}</p>
+  </div> -->
+  <div class="main ui container">
+    <form class="ui form">
+      <div class="fields">
+        <div class="ten wide field">
+          <label>Email Address</label>
+          <input type="email" [(ngModel)]="mEmail" name="email" placeholder="Email Address" email>
+        </div>
+        <div class="ten wide field">
+          <label>Password</label>
+          <input type="password" [(ngModel)]="mPass" name="password" placeholder="Password">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
+    <button class="ui green button" (click)="modal.approve({email: mEmail, password: mPass})" autofocus>OK</button>
+  </div>
+</ng-template>

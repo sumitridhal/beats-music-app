@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+.transform--84 {
+  transform: translate3d(84px, 0, 0);
+  overflow-x: hidden;
+  overflow-y: hidden !important;
+}
+
+.ui.visible.left.sidebar~.fixed, .ui.visible.left.sidebar~.pusher {
+  -webkit-transform: translate3d(84px, 0, 0);
+  transform: translate3d(84px, 0, 0);
+}
+
+.hide-scroll {
+  overflow-x: hidden;
+  overflow-y: hidden !important;
+}
+
+.ui.top.menu {
+  transition: transform .5s ease, -webkit-transform .5s ease;
+}
+
+.pusher {
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  min-height: 100%;
+  -webkit-transition: -webkit-transform .5s ease;
+  transition: -webkit-transform .5s ease;
+  transition: transform .5s ease;
+  transition: transform .5s ease, -webkit-transform .5s ease;
+}
+
+.pusher:after {
+  position: fixed;
+  top: 0;
+  right: 0;
+  content: '';
+  background-color: rgba(0, 0, 0, .4);
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+  will-change: opacity;
+  z-index: 1000;
+}
