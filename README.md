@@ -1,4 +1,4 @@
-# the-new-school
+# Beats Music Application
 
 Angular4 + Semantic UI + Firebase
 
