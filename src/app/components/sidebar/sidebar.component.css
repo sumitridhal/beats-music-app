@@ -6,18 +6,18 @@
   transition: all .5s ease, all .5s ease;
 }
 
-.ui.menu a.item {
-  padding: .5em 1.33333333em;
+.ui.menu .item, .ui.vertical.menu .menu .item {
+  padding: .75em 1.33333333em;
   color: #323844;
-}
-
-.ui.menu a.item:hover {
-  background: rgba(0, 0, 0, .03);
-  /*color: #ED3125;*/
+  font-size: 16px;;
+  /*background: -webkit-linear-gradient(#8C278B, #E31837);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;*/
 }
 
 .ui.vertical.menu .active.item {
   background: rgba(0, 0, 0, .05);
+  -webkit-text-fill-color: #CB1C4E;
   border-radius: 0;
   box-shadow: none;
   /*color: #ED3125;*/
@@ -41,8 +41,8 @@
   height: 0px;
 }
 
-.ui.vertical.menu .menu .item {
-  background: 0 0;
-  padding: .5em 1.33333333em;
-  font-size: 1em;
+.ui.vertical.menu .item>i.icon {
+  font-size: 17.7966px;
+  height: 17.7813px;
+  line-height: 17.7966px;
 }
