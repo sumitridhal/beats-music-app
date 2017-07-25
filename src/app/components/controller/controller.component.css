@@ -1,0 +1,75 @@
+.ui.text.menu {
+  background: #FFFFFF;
+  box-shadow: 3px 3px 16px 0 rgba(0, 0, 0, 0.12);
+}
+
+.ui.menu .item.cover.art {
+  font-size: 4rem;
+  padding: 0;
+}
+
+.ui.text.menu .item {
+  align-self: flex-start;
+}
+
+.info .content {
+  margin: 1em;
+}
+
+.info .content>.description {
+  margin: 0.2em 0;
+}
+
+.info .content>.meta {
+  margin: 0.5em 0;
+}
+
+.controls .content>.description {
+  margin: 0 30.5vw 0 20.5vw
+}
+
+.controls .content>.extra.progress {
+  margin: 2em 0;
+}
+
+.menu .ui.buttons>.ui.button, .ui.table .ui.icon.button {
+  background: transparent;
+}
+
+.controls .ui.buttons>.ui.button.circular {
+  border-radius: 10em;
+  border: 1px solid rgba(34, 36, 38, .15);
+}
+
+.controls .ui.buttons>.ui.button.play>.icon {
+  font-size: x-large;
+}
+
+.controls .ui.buttons>.ui.button.circular>.icon.play {
+  padding-left: 6px;
+}
+
+.ui.menu:not(.vertical) .right.menu.extra-ctrl {
+  display: inline-flex;
+  position: relative;
+  right: 150px;
+}
+
+.ui.tiny.progress .bar {
+  min-width: 0em;
+}
+
+.nonzero:hover {
+  fill: #474747;
+}
+
+.ui.top.left.popup {
+  top: auto;
+  bottom: 78px;
+  left: auto;
+  right: auto;
+}
+
+[hidden] {
+  display: none !important;
+}

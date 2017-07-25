@@ -1,3 +1,59 @@
-<p>
-  controller works!
-</p>
+<div class="ui text bottom fixed massive menu">
+  <div class="item cover art">
+    <img [src]="currentPlaying.image" >
+  </div>
+  <div class="item info">
+    <div class="content">
+      <div class="header">
+        <h2>{{ currentPlaying.title }}</h2></div>
+      <div class="description">{{ currentPlaying.artist }}</div>
+      <div class="meta">{{ currentPostion }} / {{ currentDuration }}</div>
+    </div>
+  </div>
+  <div class="item controls center aligned" >
+    <div class="content">
+      <div class="description">
+        <div class="ui icon buttons">
+          <button class="ui big button">
+            <i class="backward icon"></i>
+          </button>
+          <button class="ui big button play"  [ngClass]="'active'" >
+            <i class="play icon"></i>
+          </button>
+          <button class="ui big button" >
+            <i class="forward icon"></i>
+          </button>
+        </div>
+      </div>
+      <div class="extra progress">
+        <div class="ui tiny progress">
+          <div class="bar" style="transition-duration: 500ms;" ng-style="{width : ( progress + '%' ) }"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right menu extra-ctrl" >
+    <div class="item">
+      <div class="ui icon buttons">
+        <button class="ui button" [ngClass]="'active'">
+          <i class="repeat icon"></i>
+        </button>
+        <button class="ui button" [ngClass]="'active'">
+          <i class="shuffle icon"></i>
+        </button>
+        <button class="ui button" [ngClass]="'active'">
+          <i class="like icon"></i>
+        </button>
+        <button class="ui button" [ngClass]="'active'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g fill="none" fill-rule="evenodd">
+              <g fill="#888888" class="nonzero" fill-rule="nonzero">
+                <path class="playbackSoundBadge__queueIcon" d="M6 11h12v2H6zM6 7h8v2H6zM6 15h12v2H6zM16 3v6l4-3z"></path>
+              </g>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

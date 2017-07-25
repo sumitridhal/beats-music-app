@@ -6,8 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./controller.component.css']
 })
 export class ControllerComponent implements OnInit {
+  private currentPlaying;
+  private currentPostion: string = '0:00'
+  private currentDuration: string = '4:30'
+  isPlaying: boolean = true;
+  progress: number = 40;
 
-  constructor() { }
+  constructor() {
+    this.currentPlaying = {
+      image: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/77/Maroon_5_-_Overexposed.png/220px-Maroon_5_-_Overexposed.png',
+      title: 'Maps',
+      artist: 'Maroon 5'
+    }
+  }
 
   ngOnInit() {
   }
