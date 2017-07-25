@@ -1,0 +1,32 @@
+.ui.table {
+  border: none;
+}
+
+.ui.celled.table tbody tr td {
+  border: none;
+  border-bottom: 1px solid rgba(34,36,38,.1);
+}
+
+.ui.table thead th {
+  padding: .6em .78571429em;
+}
+
+.ui.table thead th span {
+  margin: 0 20px 0 15px;
+}
+
+.ui.table thead th>.ui.buttons .button, .ui.table thead th>.button {
+  background: transparent;
+  font-weight: 300;
+  padding: .78571429em .5em .78571429em;
+  text-transform: uppercase;
+}
+
+.ui.table thead th>.button:nth-child(3) {
+  margin-right: 20px;
+}
+
+
+i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbody tr > td:nth-child(2) {
+  color: #CB1C4E;
+}
