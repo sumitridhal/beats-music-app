@@ -59,7 +59,7 @@ i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbo
   border-left: none;
 }
 
-.ui.six.stackable.cards {
+.ui.stackable.cards {
   margin: 0;
   margin-top: -2px;
 }
