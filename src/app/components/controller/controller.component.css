@@ -1,6 +1,7 @@
 .ui.text.menu {
   background: #FFFFFF;
   box-shadow: 3px 3px 16px 0 rgba(0, 0, 0, 0.12);
+  height: 140px;
 }
 
 .ui.menu .item.cover.art {
