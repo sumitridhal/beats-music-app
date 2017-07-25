@@ -24,6 +24,7 @@ import { SongsComponent } from './components/songs/songs.component';
 import { AlbumComponent } from './components/album/album.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
+import { ControllerComponent } from './components/controller/controller.component';
 
 // export the firebase config
 export const firebaseConfig = {
@@ -57,7 +58,8 @@ const routes: Routes = [
     SongsComponent,
     AlbumComponent,
     ArtistComponent,
-    PlaylistComponent
+    PlaylistComponent,
+    ControllerComponent
   ],
   imports: [
     BrowserModule,
