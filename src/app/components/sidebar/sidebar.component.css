@@ -3,6 +3,10 @@
 }
 
 .ui.left.sidebar {
+  width: 200px;
+}
+
+.ui.left.sidebar {
   transition: all .5s ease, all .5s ease;
 }
 
@@ -15,6 +19,10 @@
 -webkit-text-fill-color: transparent;*/
 }
 
+.ui.vertical.menu>.item:first-child{
+  padding: .1em 1.33333333em;
+}
+
 .ui.vertical.menu .active.item {
   background: rgba(0, 0, 0, .05);
   -webkit-text-fill-color: #CB1C4E;
@@ -23,12 +31,8 @@
   /*color: #ED3125;*/
 }
 
-.ui.left.sidebar {
-  width: 185px;
-}
-
 .ui.divider {
-  margin: 1rem 1.5em;
+  margin: 0.5rem 1.5em;
 }
 
 .ui.vertical.menu .item>i.icon {
