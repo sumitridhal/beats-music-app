@@ -1,3 +1,18 @@
+<header class="artist-header" style="background-image: url('assets/img/header/Marron 5.jpg');">
+  <h1 class="large">Maroon 5</h1>
+  <div class="header-buttons">
+    <button class="big ui button green">PLAY</button>
+    <button class="big ui button black">FAVORITE</button>
+  </div>
+  <div class="ui center aligned container">
+    <div class="ui secondary pointing menu">
+      <a class="active item">Overview</a>
+      <a class="item">Related Artists</a>
+      <a class="item">About</a>
+    </div>
+  </div>
+</header>
+
 <table class="ui very basic celled table">
   <thead>
     <tr>
@@ -137,9 +152,16 @@
     </div>
   </div>
 
-  <div class="ui six stackable link cards">
-    <div class="centered fluid card">
-      <div class="image">
+  <div class="ui six stackable special cards">
+    <div class="centered fluid card" >
+      <div class="blurring dimmable image" >
+        <div class="ui dimmer transition visible active" >
+          <div class="content">
+            <div class="center">
+              <button class="ui basic circular massive icon button"><i class="play icon"></i></button>
+            </div>
+          </div>
+        </div>
         <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png">
       </div>
       <div class="content">
@@ -149,8 +171,16 @@
         </div>
       </div>
     </div>
-    <div class="centered fluid card">
-      <div class="image">
+
+    <div class="centered fluid card" (mouseover)="changeStyle($event)" (mouseout)="changeStyle($event)">
+      <div class="blurring dimmable image" [ngClass]="dimmed">
+        <div class="ui dimmer transition" [ngClass]="visibility" [ngStyle]="{ 'animation-duration': duration }">
+          <div class="content">
+            <div class="center">
+              <button class="circular ui basic icon button"><i class="play icon"></i></button>
+            </div>
+          </div>
+        </div>
         <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png">
       </div>
       <div class="content">
@@ -160,6 +190,7 @@
         </div>
       </div>
     </div>
+
     <div class="centered fluid card">
       <div class="image">
         <img src="https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png">

@@ -1,7 +1,7 @@
 .ui.menu {
     margin-top: 0rem;
     border: none;
-    background: #fff;
+    background: none transparent;
 }
 
 .main.ui.container > .form > .fields > .field {

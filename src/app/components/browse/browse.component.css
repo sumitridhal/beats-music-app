@@ -1,3 +1,166 @@
+header {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+header.artist-header {
+  position: relative;
+  align-items: center;
+  background-size: cover;
+  background-position: 50%;
+  padding-left: 84px;
+  padding-top: 200px;
+  margin-top: -40px;
+  margin-left: -68px;
+  margin-right: -68px;
+}
+
+header.artist-header:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: -webkit-linear-gradient(transparent -30%, #181818);
+  background: linear-gradient(transparent -30%, #181818);
+}
+
+header.artist-header>* {
+  position: relative;
+}
+
+header.artist-header h1.large {
+  font-size: 4.5em;
+  color: #fff;
+}
+
+header.artist-header h1 {
+  font-weight: 700;
+  margin: 0 auto;
+  max-width: 70%;
+  display: block;
+  text-align: center;
+}
+
+.header-buttons {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header-buttons .ui.button {
+  color: #fff;
+  cursor: pointer;
+  margin-top: 1em;
+  display: inline-block;
+  margin-bottom: 0;
+  font-size: .82em;
+  font-weight: 500;
+  text-align: center;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  background-image: none;
+  border: 0;
+  border-radius: 500px;
+  padding: 13px;
+  -webkit-transition: all .15s ease;
+  transition: all .15s ease;
+  letter-spacing: 2px;
+  min-width: 130px;
+  white-space: normal;
+  will-change: transform;
+  text-transform: uppercase;
+  line-height: 1.6;
+  vertical-align: middle;
+  user-select: none;
+}
+
+.button.green {
+  background-color: #2ebd59;
+  padding: 11px 44px 12px;
+}
+
+.button.green:focus, .button.green:hover {
+  background-color: #1ed760;
+}
+
+.button.black {
+  padding: 11px 44px 12px;
+  background: hsla(0, 0%, 9%, .7);
+  color: #fff;
+  -webkit-transition: none 33ms cubic-bezier(.3, 0, .7, 1);
+  transition: none 33ms cubic-bezier(.3, 0, .7, 1);
+  -webkit-transition-property: box-shadow, color, background-color, -webkit-transform;
+  transition-property: box-shadow, color, background-color, -webkit-transform;
+  transition-property: transform, box-shadow, color, background-color;
+  transition-property: transform, box-shadow, color, background-color, -webkit-transform;
+  box-shadow: inset 0 0 0 2px #a0a0a0;
+}
+
+.button.black:hover {
+  box-shadow: inset 0 0 0 2px #fff, 0 0 0 1px transparent;
+}
+
+.header-buttons .ui.button:focus, .header-buttons .ui.button:hover {
+  -webkit-transform: scale(1.035);
+  transform: scale(1.035);
+}
+
+.ui.container {
+  width: 400px;
+  margin-left: auto!important;
+  margin-right: auto!important;
+}
+
+.ui.secondary.pointing.menu {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.ui.secondary.pointing.menu a.item {
+  border: 0;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: hsla(0, 0%, 100%, .5);
+  margin: .8em;
+  padding: .8em .8em 0;
+  text-decoration: none;
+  -webkit-transition: color .2s;
+  transition: color .2s;
+}
+
+.ui.secondary.pointing.menu a.item:hover {
+  color: #fff;
+}
+
+.ui.secondary.pointing.menu .active.item {
+  color: #fff;
+}
+
+.ui.secondary.pointing.menu .active.item:after {
+  transform: inherit;
+  border: none;
+  left: 0;
+  content: '';
+  height: 1.41px;
+  background-color: #1ed760;
+  width: 1.4em;
+  position: relative;
+  top: .1em;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/************************************************************************************************************************/
+
 .ui.table {
   border: none;
   background: #F2F3F5;
@@ -35,6 +198,9 @@
 i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbody tr>td:nth-child(2) {
   color: #CB1C4E;
 }
+
+
+/************************************************************************************************************************/
 
 .ui.box {
   border: none;
@@ -84,13 +250,42 @@ i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbo
 }
 
 .ui.cards>.card>.content>.header:not(.ui) {
-    font-weight: 400;
-    font-size: 0.95em;
-    margin-top: -0.21425em;
-    line-height: 1.28571429em;
+  font-weight: 400;
+  font-size: 0.95em;
+  margin-top: -0.21425em;
+  line-height: 1.28571429em;
 }
 
 .ui.cards>.card .meta {
-    font-size: 0.85em;
-    color: rgba(0,0,0,.4);
+  font-size: 0.85em;
+  color: rgba(0, 0, 0, .4);
+}
+
+.ui.basic.massive.circular.icon.button {
+  height: 64px;
+  width: 64px;
+  border: 1px solid #a0a0a0;
+  background: none transparent;
+  outline: none;
+  transition: all .3s cubic-bezier(0,0,0,2.41);
+}
+
+.ui.basic.massive.circular.icon.button>.icon {
+  border-color: #fff;
+  color: #fff;
+  margin-top: -2px !important;
+  padding: 0px 5px;
+  transform: scale(1.5);
+}
+
+.ui.basic.massive.button:hover {
+  border-color: #fff !important;
+  background: none transparent !important;
+  transform: scale(1.2);
+}
+
+
+.ui.basic.massive.button:focus {
+  background: none transparent !important;
+
 }
