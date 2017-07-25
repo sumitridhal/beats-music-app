@@ -6,11 +6,11 @@
   </div>
   <div class="ui divider"></div>
 
-  <a class="item" routerLink="/browse" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/chat' }">
+  <a class="item" routerLink="/browse" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/browse' }">
     <i class="compass icon"></i>
     Browse
   </a>
-  <a class="item" routerLink="/radio" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/user' }">
+  <a class="item" routerLink="/radio" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/radio' }">
     <i class="sound icon"></i>
     Radio
   </a>
@@ -19,15 +19,15 @@
     <div class="header">YOUR MUSIC</div>
     <div class="menu">
 
-      <a class="item" routerLink="/songs" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/user' }">
+      <a class="item" routerLink="/songs" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/songs' }">
       <i class="music icon"></i>
       Songs
     </a>
-      <a class="item" routerLink="/album" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/user' }">
+      <a class="item" routerLink="/album" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/album' }">
       <i class="circle icon"></i>
       Albums
     </a>
-      <a class="item" routerLink="/artist" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/user' }">
+      <a class="item" routerLink="/artist" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/artist' }">
       <i class="star icon"></i>
       Artists
     </a>
@@ -37,7 +37,7 @@
   <div class="item">
     <div class="header">PLAYLIST</div>
     <div class="menu">
-      <a class="item" routerLink="/playlist" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/user' }">
+      <a class="item" routerLink="/playlist" routerLinkActive="active" [ngClass]="{ 'active selected': aURL == '/playlist' }">
       <i class="heart icon"></i>
       Playlist
     </a>

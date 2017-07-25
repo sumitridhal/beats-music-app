@@ -18,6 +18,12 @@ import { SidebarService } from "./components/sidebar/sidebar.service";
 import { SuiModule } from 'ng2-semantic-ui';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HomeComponent } from './components/home/home.component';
+import { BrowseComponent } from './components/browse/browse.component';
+import { RadioComponent } from './components/radio/radio.component';
+import { SongsComponent } from './components/songs/songs.component';
+import { AlbumComponent } from './components/album/album.component';
+import { ArtistComponent } from './components/artist/artist.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
 
 // export the firebase config
 export const firebaseConfig = {
@@ -32,8 +38,12 @@ export const firebaseConfig = {
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'chat', component: HomeComponent },
-  { path: 'user', component: HomeComponent }
+  { path: 'browse', component: BrowseComponent },
+  { path: 'radio', component: RadioComponent },
+  { path: 'songs', component: SongsComponent },
+  { path: 'album', component: AlbumComponent },
+  { path: 'artist', component: ArtistComponent },
+  { path: 'playlist', component: PlaylistComponent }
 ];
 
 @NgModule({
@@ -41,7 +51,13 @@ const routes: Routes = [
     AppComponent,
     HeaderComponent,
     SidebarComponent,
-    HomeComponent
+    HomeComponent,
+    BrowseComponent,
+    RadioComponent,
+    SongsComponent,
+    AlbumComponent,
+    ArtistComponent,
+    PlaylistComponent
   ],
   imports: [
     BrowserModule,
