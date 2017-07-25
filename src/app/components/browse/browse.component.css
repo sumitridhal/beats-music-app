@@ -7,12 +7,18 @@
 .ui.celled.table tbody tr td{
   border: none;
 }
+
 .ui.celled.table tbody tr:not(:last-child) td {
   border-bottom: 1px solid rgba(34,36,38,.1);
 }
 
 .ui.table thead th {
   padding: .6em .78571429em;
+}
+
+.ui.table tbody td {
+    padding: .3em .78571429em;
+    text-align: inherit;
 }
 
 .ui.table thead th span {
