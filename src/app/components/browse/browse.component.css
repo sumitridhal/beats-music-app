@@ -1,9 +1,13 @@
 .ui.table {
   border: none;
+  background: #F2F3F5;
+  padding: 1em 2em 0.5em 2em;
 }
 
-.ui.celled.table tbody tr td {
+.ui.celled.table tbody tr td{
   border: none;
+}
+.ui.celled.table tbody tr:not(:last-child) td {
   border-bottom: 1px solid rgba(34,36,38,.1);
 }
 
@@ -12,7 +16,7 @@
 }
 
 .ui.table thead th span {
-  margin: 0 20px 0 15px;
+  margin: 0 20px 0 5px;
 }
 
 .ui.table thead th>.ui.buttons .button, .ui.table thead th>.button {
