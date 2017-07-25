@@ -21,11 +21,11 @@
   text-align: inherit;
 }
 
-.ui.table thead th span {
+.ui.table thead th span, .ui.box .head span {
   margin: 0 20px 0 5px;
 }
 
-.ui.table thead th>.ui.buttons .button, .ui.table thead th>.button {
+.ui.table thead th>.ui.buttons .button, .ui.table thead th>.button, .ui.box .head .button {
   background: transparent;
   font-weight: 300;
   padding: .78571429em .5em .78571429em;
@@ -34,4 +34,63 @@
 
 i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbody tr>td:nth-child(2) {
   color: #CB1C4E;
+}
+
+.ui.box {
+  border: none;
+  background: #F2F3F5;
+  padding: 1em 2em 0.5em 2em;
+  margin: 2rem 0rem;
+  border-radius: .28571429rem;
+}
+
+.ui.box .head {
+  box-shadow: none;
+  vertical-align: middle;
+  font-size: 1em;
+  padding: .6em 0 0 0;
+  cursor: auto;
+  text-align: inherit;
+  color: rgba(0, 0, 0, .87);
+  vertical-align: inherit;
+  font-weight: 700;
+  text-transform: none;
+  border-bottom: none;
+  border-left: none;
+}
+
+.ui.six.stackable.cards {
+  margin: 0;
+  margin-top: -2px;
+}
+
+.ui.cards>.card {
+  font-size: 1em;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.ui.cards>.card>:only-child {
+  border-radius: 0rem !important;
+}
+
+.ui.cards>.card>.content {
+  padding: 0.3em 0.3em;
+}
+
+.ui.cards>.card>.image {
+  border-radius: 0!important;
+}
+
+.ui.cards>.card>.content>.header:not(.ui) {
+    font-weight: 400;
+    font-size: 0.95em;
+    margin-top: -0.21425em;
+    line-height: 1.28571429em;
+}
+
+.ui.cards>.card .meta {
+    font-size: 0.85em;
+    color: rgba(0,0,0,.4);
 }
