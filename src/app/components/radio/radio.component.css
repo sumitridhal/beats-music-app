@@ -27,8 +27,7 @@ header.artist-header:before {
   right: 0;
   left: 0;
   bottom: 0;
-  background: -webkit-linear-gradient(transparent -30%, #181818);
-  background: linear-gradient(transparent -30%, #181818);
+  background: linear-gradient(transparent -30%, rgba(208, 28, 181, 0.31));
 }
 
 header.artist-header>* {
@@ -310,7 +309,9 @@ i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbo
 }
 
 .ui.cards.popular-artist>.card>.content.bottom {
-  margin-top: -45px;
+  border: none;
+  text-align: center;
+  margin-top: -40px;
   z-index: 1;
 }
 
@@ -321,6 +322,7 @@ i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbo
 .ui.cards.popular-artist>.card>.content.bottom .meta {
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.75em;
+  line-height: 1em;
 }
 
 .ui.cards.popular-artist>.card>.content.top .icon {
