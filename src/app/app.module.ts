@@ -13,6 +13,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from "./services/auth.service";
 import { LoginService } from "./services/login.service";
 import { SpotifyLocalService } from "./services/spotify.service";
+import { MusixmatchService } from "./services/musixmatch.service";
+import { MusicgraphService } from "./services/musicgraph.service";
 import { SidebarService } from "./components/sidebar/sidebar.service";
 
 import { AppComponent } from './app.component';
@@ -81,7 +83,9 @@ const routes: Routes = [
     AuthService,
     LoginService,
     SidebarService,
-    SpotifyLocalService
+    SpotifyLocalService,
+    MusixmatchService,
+    MusicgraphService
   ],
   bootstrap: [AppComponent]
 })

@@ -8,9 +8,9 @@ import 'rxjs/add/operator/map';
 export class SpotifyLocalService {
   private client_id: string = '6cbfcfb038624f5180940f32a3892e7e'; // Your client id
   private client_secret: string = '3a61852cf2684d97b0d52784994a9c04'; // Your secret
-  private base64: string = 'NmNiZmNmYjAzODYyNGY1MTgwOTQwZjMyYTM4OTJlN2U6M2E2MTg1MmNmMjY4NGQ5N2IwZDUyNzg0OTk0YTljMDQ='
+  private auth_basic_header: string = 'NmNiZmNmYjAzODYyNGY1MTgwOTQwZjMyYTM4OTJlN2U6M2E2MTg1MmNmMjY4NGQ5N2IwZDUyNzg0OTk0YTljMDQ='
   private redirect_uri: string = 'http://localhost:9000/#/browse'; // Your redirect uri
-  url: string = 'https://api.spotify.com/v1/';
+  private url: string = 'https://api.spotify.com/v1/';
 
   constructor(private http: Http, private https: HttpClient) { }
 
@@ -21,25 +21,42 @@ export class SpotifyLocalService {
   }
 
 
-  public authorize() {
-    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-    headers = headers.append('Accept', 'application/json');
-    headers = headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
-    headers = headers.append('Access-Control-Allow-Origin', 'http://localhost:9000');
-    headers = headers.append('Access-Control-Allow-Headers', "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding");
-    headers = headers.append('Authorization', 'Basic NmNiZmNmYjAzODYyNGY1MTgwOTQwZjMyYTM4OTJlN2U6M2E2MTg1MmNmMjY4NGQ5N2IwZDUyNzg0OTk0YTljMDQ='); //btoa(this.client_id + ':' + this.client_secret)
+ public authorizationCode (){
+   let redirect_uri = 'http%3A%2F%2Flocalhost%3A9000%2F%23%2Fbrowse'
+   let scope = 'user-read-private%20user-read-email%20streaming%20user-library-read%20playlist-read-private'
+   let url = 'https://accounts.spotify.com/authorize/?client_id=' + this.client_id + '&response_type=code&redirect_uri='+ redirect_uri +'&scope='+ scope +'&state=34fFs29kd09';
 
-    // let headers = new Headers();
-    // headers.append('Content-Type','application/x-www-form-urlencoded');
-    // headers.append('Accept', 'application/json');
-    // headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
-    // headers.append('Access-Control-Allow-Origin', 'http://localhost:9000');
-    // headers.append('Access-Control-Allow-Headers', "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding");
-    // headers.append('Authorization', 'Basic NmNiZmNmYjAzODYyNGY1MTgwOTQwZjMyYTM4OTJlN2U6M2E2MTg1MmNmMjY4NGQ5N2IwZDUyNzg0OTk0YTljMDQ='); //btoa(this.client_id + ':' + this.client_secret)
-    // let options = new RequestOptions({ headers: headers });
+   return this.http.get(url).map(res => res)
+ }
+
+ public implicitGrant(){
+   let redirect_uri = 'http%3A%2F%2Flocalhost%3A9000%2F%23%2Fbrowse'
+   let scope = 'user-read-private%20user-read-email%20streaming%20user-library-read%20playlist-read-private'
+   let url = 'https://accounts.spotify.com/authorize/?client_id=' + this.client_id + '&response_type=code&redirect_uri='+ redirect_uri +'&scope='+ scope +'&response_type=token&state=123';
+
+   return this.http.get(url).map(res => res)
+ }
+
+  public clientCredentials() {
+    // let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    // headers = headers.append('Accept', 'application/json');
+    // headers = headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
+    // headers = headers.append('Access-Control-Allow-Origin', 'http://localhost:9000');
+    // headers = headers.append('Access-Control-Allow-Headers', "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding");
+    // headers = headers.append('Authorization', 'Basic NmNiZmNmYjAzODYyNGY1MTgwOTQwZjMyYTM4OTJlN2U6M2E2MTg1MmNmMjY4NGQ5N2IwZDUyNzg0OTk0YTljMDQ='); //btoa(this.client_id + ':' + this.client_secret)
+
+    let headers = new Headers();
+    headers.append('Content-Type','application/x-www-form-urlencoded');
+    headers.append('Accept', 'application/json');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:9000');
+    headers.append('Access-Control-Allow-Headers', "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding");
+    headers.append('Authorization', 'Basic NmNiZmNmYjAzODYyNGY1MTgwOTQwZjMyYTM4OTJlN2U6M2E2MTg1MmNmMjY4NGQ5N2IwZDUyNzg0OTk0YTljMDQ='); //btoa(this.client_id + ':' + this.client_secret)
+    let options = new RequestOptions({ headers: headers });
 
     let body = 'grant_type=client_credentials'
-    return this.https.post('https://accounts.spotify.com/api/token', body, { headers }).map(res => res)
+    //return this.https.post('https://accounts.spotify.com/api/token', body, { headers }).map(res => res)
+    return this.http.post('https://accounts.spotify.com/api/token', body, options).map(res => res)
   }
 
   public searchArtist(value) {
