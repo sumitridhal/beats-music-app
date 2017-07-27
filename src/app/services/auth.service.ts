@@ -63,7 +63,7 @@ export class AuthService {
     this.isCustom.next(val);
   }
 
-  getUser(): Observable<{ displayName: string, photoURL: string, isAnonymous: true, email: string, phoneNumber: string, uid: string } > {
+  getUser(): Observable<{ displayName: string, photoURL: string, isAnonymous: boolean, email: string, phoneNumber: string, uid: string } > {
     return this.user.asObservable();
   }
 

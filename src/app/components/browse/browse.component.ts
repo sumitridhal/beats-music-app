@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SpotifyLocalService } from "../../services/spotify.service";
 
 @Component({
   selector: 'app-browse',
@@ -6,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./browse.component.css']
 })
 export class BrowseComponent implements OnInit {
+  service: SpotifyLocalService;
   visibility: string = 'transition hidden';
   dimmed: string = '';
   duration: string = '500ms';
 
-  constructor() { }
+  constructor(service: SpotifyLocalService) {
+    this.service = service;
+  }
 
   changeStyle($event) {
     if ($event.type == 'mouseover') {
@@ -33,6 +37,16 @@ export class BrowseComponent implements OnInit {
 
 
   ngOnInit() {
+    // this.service.getArtistById('0OdUWJ0sBjDrqHygGUXeCF ')
+    // .subscribe(data => {
+    //   console.log(data);
+    // });
+
+    this.service.authorize()
+    .subscribe(data => {
+      console.log(data);
+    });
+
   }
 
 }
