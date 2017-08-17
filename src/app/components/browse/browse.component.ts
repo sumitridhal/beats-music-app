@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SpotifyLocalService } from "../../services/spotify.service";
 import { MusixmatchService } from "../../services/musixmatch.service";
 import { MusicgraphService } from "../../services/musicgraph.service";
-
 
 @Component({
   selector: 'app-browse',
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.css']
 })
-export class BrowseComponent implements OnInit {
+export class BrowseComponent implements OnInit, OnDestroy {
+  private sub: any;
   spotify: SpotifyLocalService;
   musixmatch: MusixmatchService;
   musicgraph: MusicgraphService;
@@ -45,31 +45,30 @@ export class BrowseComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.musixmatch.getAlbum('14250417')
+    // this.musixmatch.getAlbum('1YcUpUihfAEU7L85e3VZQO')
     //   .subscribe(data => {
-    //     console.log(data);
+    //     console.log(JSON.stringify(data,null,4));
     //   });
 
-      // this.musicgraph.getArtist('ee2564c7-a6b5-11e0-b446-00251188dd67')
-      // .subscribe(data => {
-      //    console.log(data);
-      //  });
+    // this.musicgraph.getArtist('ee2564c7-a6b5-11e0-b446-00251188dd67')
+    // .subscribe(data => {
+    //    console.log(data);
+    //  });
 
     // this.spotify.getArtistById('0OdUWJ0sBjDrqHygGUXeCF ')
     // .subscribe(data => {
     //   console.log(data);
     // });
-
-    this.spotify.implicitGrant()
-    .subscribe(data => {
-      console.log(data);
-    });
-
-    // this.spotify.clientCredentials()
+    //
+    // this.spotify.searchArtist('Adele')
     // .subscribe(data => {
     //   console.log(data);
     // });
 
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

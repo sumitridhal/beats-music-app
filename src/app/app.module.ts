@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -31,6 +31,10 @@ import { ControllerComponent } from './components/controller/controller.componen
 // npm
 import { SuiModule } from 'ng2-semantic-ui';
 
+
+export function spotifyAuthFactory(spotifyAuth: SpotifyLocalService): Function {
+  return () => spotifyAuth.clientCredentials();
+}
 
 // export the firebase config
 export const firebaseConfig = {
@@ -69,7 +73,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes , {useHash: true}),
+    RouterModule.forRoot(routes, { useHash: true }),
     FormsModule,
     HttpModule,
     HttpClientModule,
@@ -85,7 +89,13 @@ const routes: Routes = [
     SidebarService,
     SpotifyLocalService,
     MusixmatchService,
-    MusicgraphService
+    MusicgraphService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: spotifyAuthFactory,
+      deps: [SpotifyLocalService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
