@@ -1,0 +1,18 @@
+<div class="centered fluid card" (mouseover)="changeStyle($event)" (mouseout)="changeStyle($event)">
+  <div class="blurring dimmable image">
+    <div class="ui dimmer transition visible" [ngClass]="class">
+      <div class="content">
+        <div class="center">
+          <button class="ui basic circular massive icon button"><i class="play icon"></i></button>
+        </div>
+      </div>
+    </div>
+    <img src="{{ song.images[0].url }}">
+  </div>
+  <div class="content">
+    <div class="header">{{ song.name }}</div>
+    <div class="meta">
+      <span class="date">{{ song.artists[0].name }}</span>
+    </div>
+  </div>
+</div>

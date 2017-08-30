@@ -14,13 +14,13 @@ export class LoginService {
 
   constructor(private afAuth: AngularFireAuth, public sAuth: AuthService) {
     this.user = afAuth.authState;
-    this.afAuth.authState.subscribe(auth => {
-      this.sAuth.setAuth(auth);  //Also for Logout State
-      this.name = '';
-      if (auth) {
-        this.name = auth;
-      }
-    })
+    // this.afAuth.authState.subscribe(auth => {
+    //   this.sAuth.setAuth(auth);  //Also for Logout State
+    //   this.name = '';
+    //   if (auth) {
+    //     this.name = auth;
+    //   }
+    // })
   }
 
 

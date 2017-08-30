@@ -3,6 +3,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { IntervalObservable } from 'rxjs/Observable/IntervalObservable';
+import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
@@ -10,77 +12,131 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class SpotifyLocalService {
-  private client_id: string = '6cbfcfb038624f5180940f32a3892e7e'; // Your client id
-  private client_secret: string = '3a61852cf2684d97b0d52784994a9c04'; // Your secret
   private access_token: any;
-  private redirect_uri: string = 'http://localhost:9000/#/browse'; // Your redirect uri
   private url: string = 'https://api.spotify.com/v1/';
+  private aws: string = 'http://ec2-54-69-27-164.us-west-2.compute.amazonaws.com:3000';
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    // IntervalObservable.create(3600).subscribe(n => {
+    //   console.log('interval');
+    //   this.searchArtist('adele')
+    //   .subscribe(data => {
+    //       console.log(JSON.stringify(data,null,4));
+    //     });
+    // });
+
+    // this.getData('artists?ids=04gDigrS5kc9YWfZHwBETP,4dpARuHxo51G3z768sgnrY,5Pwc4xIPtQLFEnJriah9YJ,06HL4z0CvFAxyc27GXpf02,5pKCCKE2ajJHZ9KAiaK11H,6VuMaDnrHyPL1p4EHjYLi7,1UTPBmNbXNTittyMJrNkvw')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+    //
+    // this.getData('artists/04gDigrS5kc9YWfZHwBETP/top-tracks?country=US')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+
+    // this.getData('browse/new-releases?country=US')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+
+    // this.getData('browse/featured-playlists?country=US&limit=20')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+    //
+    // this.getData('recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_tracks=0c6xIDDpzE81m2q797ordA&min_energy=0.4&min_popularity=50&market=US')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+
+    //this.getData('tracks/3n3Ppam7vgaVa1iaRUc9Lp').subscribe(data => console.log(data));
+
+    //this.getData('users/spotifycharts/playlists').subscribe(data => console.log(data));
+
+    //
+    // this.getData('browse/categories')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+    //
+    //
+    // this.getData('browse/categories/party')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+    //
+
+    //
+    // this.getData('users/spotify_espa%C3%B1a/playlists/21THa8j9TaSGuXYNBU5tsC/tracks')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+    //
+    //
+    // this.getData('tracks/3n3Ppam7vgaVa1iaRUc9Lp').subscribe(data => console.log(data));
+
+
+    // this.getData('users/21pz7umxlqgx5gnpo7pzg7rna/playlists')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+    //
+    // this.getData('me/player/currently-playing')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+    //
+    // this.getData('me/following?type=artist&limit=20')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+    //
+    // this.getData('me/top/artists')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+    //
+    // this.getData('me/player/recently-played')
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+
+  }
 
   createAuthorizationHeader(headers: Headers) {
     headers.append('Authorization', 'Bearer ' + this.access_token);
   }
 
-
-  public authorizationCode() {
-    let redirect_uri = 'http%3A%2F%2Flocalhost%3A9000%2F%23%2Fbrowse'
-    let scope = 'user-read-private%20user-read-email%20streaming%20user-library-read%20playlist-read-private'
-    let url = 'https://accounts.spotify.com/authorize/?client_id=' + this.client_id + '&response_type=code&redirect_uri=' + redirect_uri + '&scope=' + scope + '&state=34fFs29kd09';
-
-    return this.http.get(url).map(res => res)
-  }
-
-  public implicitGrant() {
-    let redirect_uri = 'http%3A%2F%2Flocalhost%3A9000%2F%23%2Fbrowse'
-    let scope = 'user-read-private%20user-read-email%20streaming%20user-library-read%20playlist-read-private'
-    let url = 'https://accounts.spotify.com/authorize/?client_id=' + this.client_id + '&response_type=code&redirect_uri=' + redirect_uri + '&scope=' + scope + '&response_type=token&state=123';
-
-    return this.http.get(url).map(res => res)
-  }
-
   clientCredentials(): Promise<any> {
-    this.access_token = null;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    headers.append('Accept', 'application/json');
-    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
-    headers.append('Access-Control-Allow-Origin', 'http://localhost:9000');
-    headers.append('Access-Control-Allow-Headers', "X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding");
-    headers.append('Authorization', 'Basic NmNiZmNmYjAzODYyNGY1MTgwOTQwZjMyYTM4OTJlN2U6M2E2MTg1MmNmMjY4NGQ5N2IwZDUyNzg0OTk0YTljMDQ='); //btoa(this.client_id + ':' + this.client_secret)
-    let options = new RequestOptions({ headers: headers });
-    let body = 'grant_type=client_credentials'
+    // this.access_token = null;
+    // return this.http.get(this.aws + '/token')
+    //   .map(res => res.json())
+    //   .toPromise()
+    //   .then((data: any) => this.access_token = data.access_token)
+    //   .catch((err: any) => Promise.resolve());
 
-    return this.http.post('https://accounts.spotify.com/api/token', body, options)
-    .map(res => res.json())
-            .toPromise()
-            .then((data: any) => this.access_token = data.access_token)
-            .catch((err: any) => Promise.resolve());
-
+    var promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log("Boot clientCredentials Service");
+        resolve();
+      }, 1000);
+    })
+    return promise;
   }
 
-  public searchArtist(value) {
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
-    return this.http.get(this.url + 'search?type=artist&q=' + value, {
-      headers: headers
-    }).map(res => res.json())
+  public getData(api) {
+    return this.http.get(this.aws + '/token')
+      .map(res => res.json())
+      .switchMap(data => {
+        this.access_token = data.access_token;
+        let headers = new Headers();
+        headers.append('Authorization', 'Bearer ' + this.access_token);
+        return this.http.get(this.url + api, {
+          headers: headers
+        }).map(res => res.json());
+      })
   }
 
-  public getArtistById(id) {
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
-    return this.http.get(this.url + 'artists/' + id, {
-      headers: headers
-    }).map(res => res.json())
-  }
-
-  public getTrackById(id) {
-    let headers = new Headers();
-    this.createAuthorizationHeader(headers);
-    return this.http.get(this.url + 'tracks/' + id, {
-      headers: headers
-    }).map(res => res.json())
-  }
 
 }

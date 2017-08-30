@@ -30,7 +30,7 @@ import { PlaylistComponent } from './components/playlist/playlist.component';
 import { ControllerComponent } from './components/controller/controller.component';
 // npm
 import { SuiModule } from 'ng2-semantic-ui';
-
+import { SongCardComponent } from './components/song-card/song-card.component';
 
 export function spotifyAuthFactory(spotifyAuth: SpotifyLocalService): Function {
   return () => spotifyAuth.clientCredentials();
@@ -47,7 +47,7 @@ export const firebaseConfig = {
 };
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'browse', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'browse', component: BrowseComponent },
   { path: 'radio', component: RadioComponent },
@@ -69,7 +69,8 @@ const routes: Routes = [
     AlbumComponent,
     ArtistComponent,
     PlaylistComponent,
-    ControllerComponent
+    ControllerComponent,
+    SongCardComponent
   ],
   imports: [
     BrowserModule,
