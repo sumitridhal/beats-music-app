@@ -31,6 +31,7 @@ import { ControllerComponent } from './components/controller/controller.componen
 // npm
 import { SuiModule } from 'ng2-semantic-ui';
 import { SongCardComponent } from './components/song-card/song-card.component';
+import { NewReleasesPipe } from './pipe/new-releases.pipe';
 
 export function spotifyAuthFactory(spotifyAuth: SpotifyLocalService): Function {
   return () => spotifyAuth.clientCredentials();
@@ -51,8 +52,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'browse', component: BrowseComponent },
   { path: 'radio', component: RadioComponent },
-  { path: 'songs', component: SongsComponent },
-  { path: 'album', component: AlbumComponent },
+  { path: 'songs', component: BrowseComponent },
+  { path: 'album', component: BrowseComponent },
   { path: 'artist', component: ArtistComponent },
   { path: 'playlist', component: PlaylistComponent }
 ];
@@ -70,7 +71,8 @@ const routes: Routes = [
     ArtistComponent,
     PlaylistComponent,
     ControllerComponent,
-    SongCardComponent
+    SongCardComponent,
+    NewReleasesPipe
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import { SpotifyLocalService } from '../../services/spotify.service';
 
 @Component({
@@ -7,21 +9,32 @@ import { SpotifyLocalService } from '../../services/spotify.service';
   styleUrls: ['./browse.component.css']
 })
 
-export class BrowseComponent implements OnInit {
+export class BrowseComponent implements OnInit, OnDestroy {
   spotify: SpotifyLocalService;
   public newReleases: any;
+  public artistList: any;
+  aURL: string;
+  private _subscription1: Subscription;
 
-  constructor(spotify: SpotifyLocalService) {
+  constructor(spotify: SpotifyLocalService, private router: Router) {
     this.spotify = spotify;
+    this._subscription1 = router.events.subscribe((route: any) => this.aURL = route.url);
   }
 
   ngOnInit() {
-    this.spotify.getData('browse/new-releases?country=US&offset=0&limit=6')
+    this.spotify.getNewReleases()
       .subscribe(data => {
-        this.newReleases = data.albums.items;
-        console.log(data);
+        this.newReleases = data;
       })
 
+    this.spotify.getArtistList()
+      .subscribe(data => {
+        this.artistList = data;
+      });
+  }
+
+  ngOnDestroy() {
+    this._subscription1.unsubscribe();
   }
 
 }

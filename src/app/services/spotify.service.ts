@@ -3,11 +3,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IntervalObservable } from 'rxjs/Observable/IntervalObservable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/forkJoin';
 
 
 @Injectable()
@@ -15,8 +17,11 @@ export class SpotifyLocalService {
   private access_token: any;
   private url: string = 'https://api.spotify.com/v1/';
   private aws: string = 'http://ec2-54-69-27-164.us-west-2.compute.amazonaws.com:3000';
+  public newReleases: BehaviorSubject<{}> = new BehaviorSubject({});
+  public artistList: BehaviorSubject<{}> = new BehaviorSubject({});
 
   constructor(private http: Http) {
+
     // IntervalObservable.create(3600).subscribe(n => {
     //   console.log('interval');
     //   this.searchArtist('adele')
@@ -109,20 +114,25 @@ export class SpotifyLocalService {
   }
 
   clientCredentials(): Promise<any> {
-    // this.access_token = null;
-    // return this.http.get(this.aws + '/token')
-    //   .map(res => res.json())
-    //   .toPromise()
-    //   .then((data: any) => this.access_token = data.access_token)
-    //   .catch((err: any) => Promise.resolve());
+    let releases = this.getData('browse/new-releases?country=US&offset=0&limit=48')
+    let artists = this.getData('artists?ids=04gDigrS5kc9YWfZHwBETP,4dpARuHxo51G3z768sgnrY,5Pwc4xIPtQLFEnJriah9YJ,06HL4z0CvFAxyc27GXpf02,6VuMaDnrHyPL1p4EHjYLi7,1UTPBmNbXNTittyMJrNkvw')
 
-    var promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log("Boot clientCredentials Service");
-        resolve();
-      }, 1000);
+    return Observable.forkJoin([releases, artists])
+    .toPromise()
+    .then((result: any) => {
+      this.newReleases.next(result[0].albums.items)
+      this.artistList.next(result[1].artists)
     })
-    return promise;
+    .catch((err: any) => Promise.resolve());;
+
+  }
+
+  public getNewReleases(): Observable<any> {
+    return this.newReleases.asObservable();
+  }
+
+  public getArtistList(): Observable<any> {
+    return this.artistList.asObservable();
   }
 
   public getData(api) {

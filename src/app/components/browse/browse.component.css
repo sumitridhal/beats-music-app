@@ -1,3 +1,7 @@
+[hidden] {
+    display: none !important;
+}
+/************************************************************************************************************************/
 header {
   margin: 0;
   padding: 0;
@@ -190,6 +194,14 @@ header.artist-header h1 {
   text-align: inherit;
 }
 
+.ui.table tbody td > i.icon:hover {
+  color: #CB1C4E;
+}
+
+.ui.table tbody td > i.plus.icon:hover::before {
+  content: "\f00c";
+}
+
 .ui.table thead th span, .ui.box .head span {
   margin: 0 20px 0 5px;
 }
@@ -201,7 +213,7 @@ header.artist-header h1 {
   text-transform: uppercase;
 }
 
-i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbody tr>td:nth-child(2) {
+i.icon.active, .ui.active.button, .ui.celled.table tbody tr>td:nth-child(2) {
   color: #CB1C4E;
 }
 
@@ -266,6 +278,7 @@ i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbo
   font-size: 1.2em;
   font-weight: 500;
   padding-left: 5px;
+  text-transform: capitalize;
 }
 
 .ui.box.transparent .head .button.last {
@@ -323,6 +336,7 @@ i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbo
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.75em;
   line-height: 1em;
+  text-transform: capitalize;
 }
 
 .ui.cards.popular-artist>.card>.content.top .icon {

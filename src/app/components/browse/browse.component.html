@@ -1,4 +1,4 @@
-<header class="artist-header" style="background-image: url('http://d1i3xayf43lpeg.cloudfront.net/58l7lmmaka1i/2jqTg1i70ce8G6yUyIi624/77fcf976d461fd96715da306b0afec34/cover.jpg');">
+<header [hidden]="aURL != '/browse'" class="artist-header" style="background-image: url('http://d1i3xayf43lpeg.cloudfront.net/58l7lmmaka1i/2jqTg1i70ce8G6yUyIi624/77fcf976d461fd96715da306b0afec34/cover.jpg');">
   <h1 class="large">What is Hot now? <br> Weekend Groove Playlist</h1>
   <div class="header-buttons">
     <button class="big ui button green">PLAY ALL</button>
@@ -7,129 +7,27 @@
 
 <div class="ui box transparent">
   <div class="head bold">
-    <span>SONGS</span>
-    <div class="ui buttons">
+    <span>{{ aURL=='/browse'?'New Albums and Singles':'New '+aURL.replace('/','') }}</span>
+    <!-- <span>{{ aURL=='/browse'?'New Albums and Singles':'New'+aURL.replace('/')}}</span> -->
+    <div class="ui buttons" [hidden]="aURL != '/browse'">
       <button class="ui button active">New</button>
       <button class="ui button">Popular</button>
       <button class="ui button">Trend</button>
     </div>
-    <div class="ui icon right floated small button last active">
+    <div class="ui icon right floated small button last active" [hidden]="aURL != '/browse'">
       <i class="angle right icon"></i>
     </div>
-    <div class="ui icon right floated small button active">
+    <div class="ui icon right floated small button active" [hidden]="aURL != '/browse'">
       <i class="angle left icon"></i>
     </div>
   </div>
 
   <div class="ui six stackable special cards">
-    <app-song-card *ngFor='let s of newReleases' [song]='s' [name]="s.name"></app-song-card>
+    <app-song-card *ngFor='let s of newReleases | newReleases:aURL | slice:0:(aURL == "/browse")?6:48 ; let i=index' [song]='s' [name]="s.name"></app-song-card>
   </div>
 </div>
 
-<div class="ui box transparent">
-  <div class="head bold">
-    <span>SONGS</span>
-    <div class="ui buttons">
-      <button class="ui button active">New</button>
-      <button class="ui button">Popular</button>
-      <button class="ui button">Trend</button>
-    </div>
-    <div class="ui icon right floated small button last active">
-      <i class="angle right icon"></i>
-    </div>
-    <div class="ui icon right floated small button active">
-      <i class="angle left icon"></i>
-    </div>
-  </div>
-
-  <div class="ui six stackable special cards">
-    <div class="centered fluid card">
-      <div class="blurring dimmable image">
-        <div class="ui dimmer transition visible active">
-          <div class="content">
-            <div class="center">
-              <button class="ui basic circular massive icon button"><i class="play icon"></i></button>
-            </div>
-          </div>
-        </div>
-        <img src="https://i.scdn.co/image/f087239d16c1262f6e23fb470e2bb0ca706c9a91">
-      </div>
-      <div class="content">
-        <div class="header">Final Song</div>
-        <div class="meta">
-          <span class="date">MØ</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="centered fluid card">
-      <div class="blurring dimmable image">
-        <div class="ui dimmer transition">
-          <div class="content">
-            <div class="center">
-              <button class="ui basic circular massive icon button"><i class="play icon"></i></button>
-            </div>
-          </div>
-        </div>
-        <img src="https://i.scdn.co/image/b5f78ddc769083e0bd828960de92353ce634f20d">
-      </div>
-      <div class="content">
-        <div class="header">She's On My Mind</div>
-        <div class="meta">
-          <span class="date">JP Cooper</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="centered fluid card">
-      <div class="image">
-        <img src="https://i.scdn.co/image/7c177e065ef81bdf0ae59d99af828f6976f9228b">
-      </div>
-      <div class="content">
-        <div class="header">Poor Me, a song</div>
-        <div class="meta">
-          <span class="date">Shania Twain</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="image">
-        <img src="https://i.scdn.co/image/52e145db7641f35f8aa1232da146923c1e288d27">
-      </div>
-      <div class="content">
-        <div class="header">Woman</div>
-        <div class="meta">
-          <span class="date">Kesha</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="image">
-        <img src="https://i.scdn.co/image/8e6e7ebac1d649d5f417d10b3e0284b464a74cd5">
-      </div>
-      <div class="content">
-        <div class="header">Feels</div>
-        <div class="meta">
-          <span class="date">Calvin Harris</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="image">
-        <img src="https://i.scdn.co/image/87d0b1856d2c2ce55fdb4c8129e47a6df6f33aff">
-      </div>
-      <div class="content">
-        <div class="header">Swalla</div>
-        <div class="meta">
-          <span class="date">Jason Derulo</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="ui box transparent">
+<div class="ui box transparent" [hidden]="aURL != '/browse'">
   <div class="head" style="margin-bottom: 18px;">
     <span>Popular Artist You May Also Like</span>
 
@@ -145,95 +43,24 @@
   </div>
 
   <div class="ui six stackable link special cards popular-artist">
-    <div class="centered fluid card">
+    <div class="centered fluid card" *ngFor='let a of artistList'>
       <div class="content top">
-        <i class="right floated star icon active"></i>
+        <i class="right floated star icon" [ngClass]="{'active': a.popularity > 85 }"></i>
       </div>
       <div class="image">
-        <img src="https://i.scdn.co/image/d83a086148afe6539dae524607cbe4b6ccdd0360">
+        <img src="{{ a.images[0].url }}">
       </div>
       <div class="content bottom">
-        <div class="header">Adele</div>
+        <div class="header">{{ a.name }}</div>
         <div class="meta">
-          <span class="date">Pop</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="content top">
-        <i class="right floated star icon"></i>
-      </div>
-      <div class="image">
-        <img src="https://i.scdn.co/image/9f65f9f5ba10e0243da093306d213f88ccb85da6">
-      </div>
-      <div class="content bottom">
-        <div class="header">Shakira</div>
-        <div class="meta">
-          <span class="date">Pop</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="content top">
-        <i class="right floated star icon"></i>
-      </div>
-      <div class="image">
-        <img src="https://i.scdn.co/image/c4d1926567c8c5bf7319024b3d4cf67e4024d848">
-      </div>
-      <div class="content bottom">
-        <div class="header">Calvin Harris</div>
-        <div class="meta">
-          <span class="date">EDM</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="content top">
-        <i class="right floated star icon active"></i>
-      </div>
-      <div class="image">
-        <img src="https://i.scdn.co/image/cac11e9ad5246a4d975cc542bad1776a1e38de68">
-      </div>
-      <div class="content bottom">
-        <div class="header">OneRepublic</div>
-        <div class="meta">
-          <span class="date">Alternative Rock</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="content top">
-        <i class="right floated star icon"></i>
-      </div>
-      <div class="image">
-        <img src="https://i.scdn.co/image/5eb1ba2ee2551e02006a433b4e1ec98075645e9b">
-      </div>
-      <div class="content bottom">
-        <div class="header">Maroon 5</div>
-        <div class="meta">
-          <span class="date">Pop</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="content top">
-        <i class="right floated star icon"></i>
-      </div>
-      <div class="image">
-        <img src="https://i.scdn.co/image/f93b044aafeef3e2a25dfd705e16f280a90f4336">
-      </div>
-      <div class="content bottom">
-        <div class="header">Blake Shelton</div>
-        <div class="meta">
-          <span class="date">Country</span>
+          <span class="date"> {{ a.genres[0] }}</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-<div class="ui stackable two column grid">
+<div class="ui stackable two column grid" [hidden]="aURL != '/browse'">
   <div class="column">
     <div class="ui box transparent">
       <div class="head" style="margin-bottom: 18px;">
@@ -241,101 +68,20 @@
       </div>
       <table class="ui very basic celled table">
         <tbody>
-          <tr>
+          <tr *ngFor='let song of newReleases | slice:6:11; let i=index;'>
             <td class="collapsing">
-              <img class="ui mini spaced image" src="https://is4-ssl.mzstatic.com/image/thumb/Music122/v4/4a/e5/dd/4ae5dd20-f3a0-579d-2338-bdb355df04e8/source/1200x630bb.jpg">
+              <img class="ui mini spaced image" src="{{ song.images[0].url }}">
             </td>
-            <td class="collapsing">1</td>
+            <td class="collapsing">{{i+1}}</td>
             <td class="collapsing">
               <i class="plus icon"></i>
             </td>
-            <td>Cold</td>
+            <td>{{ song.name }}</td>
             <td>
-              <span>Cold(Hot Shade  Mike Perry Remix)</span>
+              <span>{{ song.artists[0].name }}</span>
             </td>
-            <td class="collapsing">3:40</td>
             <td class="collapsing">
               <i class="heart icon"></i>
-            </td>
-            <td class="collapsing">
-              <i class="ellipsis horizontal icon"></i>
-            </td>
-          </tr>
-          <tr>
-            <td class="collapsing">
-              <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png">
-            </td>
-            <td class="collapsing">2</td>
-            <td class="collapsing">
-              <i class="active checkmark icon"></i>
-            </td>
-            <td>Maps</td>
-            <td>
-              <span>V</span>
-            </td>
-            <td class="collapsing">3:40</td>
-            <td class="collapsing">
-              <i class="empty heart icon"></i>
-            </td>
-            <td class="collapsing">
-              <i class="ellipsis horizontal icon"></i>
-            </td>
-          </tr>
-          <tr>
-            <td class="collapsing">
-              <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png">
-            </td>
-            <td class="collapsing">3</td>
-            <td class="collapsing">
-              <i class="plus icon"></i>
-            </td>
-            <td>Sugar</td>
-            <td>
-              <span>V</span>
-            </td>
-            <td class="collapsing">3:40</td>
-            <td class="collapsing">
-              <i class="heart icon"></i>
-            </td>
-            <td class="collapsing">
-              <i class="ellipsis horizontal icon"></i>
-            </td>
-          </tr>
-          <tr>
-            <td class="collapsing">
-              <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png">
-            </td>
-            <td class="collapsing">4</td>
-            <td class="collapsing">
-              <i class="plus icon"></i>
-            </td>
-            <td>Daylight</td>
-            <td>
-              <span>Overexposed</span>
-            </td>
-            <td class="collapsing">3:40</td>
-            <td class="collapsing">
-              <i class="empty heart icon"></i>
-            </td>
-            <td class="collapsing">
-              <i class="ellipsis horizontal icon"></i>
-            </td>
-          </tr>
-          <tr>
-            <td class="collapsing">
-              <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png">
-            </td>
-            <td class="collapsing">5</td>
-            <td class="collapsing">
-              <i class="plus icon"></i>
-            </td>
-            <td>Payphone</td>
-            <td>
-              <span>Overexposed</span>
-            </td>
-            <td class="collapsing">3:40</td>
-            <td class="collapsing">
-              <i class="empty heart icon"></i>
             </td>
             <td class="collapsing">
               <i class="ellipsis horizontal icon"></i>
@@ -364,101 +110,20 @@
       </div>
       <table class="ui very basic celled table">
         <tbody>
-          <tr>
+          <tr *ngFor='let song of newReleases | slice:11:16; let i=index'>
             <td class="collapsing">
-              <img class="ui mini spaced image" src="https://is4-ssl.mzstatic.com/image/thumb/Music122/v4/4a/e5/dd/4ae5dd20-f3a0-579d-2338-bdb355df04e8/source/1200x630bb.jpg">
+              <img class="ui mini spaced image" src="{{ song.images[0].url }}">
             </td>
-            <td class="collapsing">1</td>
+            <td class="collapsing">{{i+1}}</td>
             <td class="collapsing">
               <i class="plus icon"></i>
             </td>
-            <td>Cold</td>
+            <td>{{ song.name }}</td>
             <td>
-              <span>Cold(Hot Shade  Mike Perry Remix)</span>
+              <span>{{ song.artists[0].name }}</span>
             </td>
-            <td class="collapsing">3:40</td>
             <td class="collapsing">
               <i class="heart icon"></i>
-            </td>
-            <td class="collapsing">
-              <i class="ellipsis horizontal icon"></i>
-            </td>
-          </tr>
-          <tr>
-            <td class="collapsing">
-              <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png">
-            </td>
-            <td class="collapsing">2</td>
-            <td class="collapsing">
-              <i class="active checkmark icon"></i>
-            </td>
-            <td>Maps</td>
-            <td>
-              <span>V</span>
-            </td>
-            <td class="collapsing">3:40</td>
-            <td class="collapsing">
-              <i class="empty heart icon"></i>
-            </td>
-            <td class="collapsing">
-              <i class="ellipsis horizontal icon"></i>
-            </td>
-          </tr>
-          <tr>
-            <td class="collapsing">
-              <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png">
-            </td>
-            <td class="collapsing">3</td>
-            <td class="collapsing">
-              <i class="plus icon"></i>
-            </td>
-            <td>Sugar</td>
-            <td>
-              <span>V</span>
-            </td>
-            <td class="collapsing">3:40</td>
-            <td class="collapsing">
-              <i class="heart icon"></i>
-            </td>
-            <td class="collapsing">
-              <i class="ellipsis horizontal icon"></i>
-            </td>
-          </tr>
-          <tr>
-            <td class="collapsing">
-              <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png">
-            </td>
-            <td class="collapsing">4</td>
-            <td class="collapsing">
-              <i class="plus icon"></i>
-            </td>
-            <td>Daylight</td>
-            <td>
-              <span>Overexposed</span>
-            </td>
-            <td class="collapsing">3:40</td>
-            <td class="collapsing">
-              <i class="empty heart icon"></i>
-            </td>
-            <td class="collapsing">
-              <i class="ellipsis horizontal icon"></i>
-            </td>
-          </tr>
-          <tr>
-            <td class="collapsing">
-              <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png">
-            </td>
-            <td class="collapsing">5</td>
-            <td class="collapsing">
-              <i class="plus icon"></i>
-            </td>
-            <td>Payphone</td>
-            <td>
-              <span>Overexposed</span>
-            </td>
-            <td class="collapsing">3:40</td>
-            <td class="collapsing">
-              <i class="empty heart icon"></i>
             </td>
             <td class="collapsing">
               <i class="ellipsis horizontal icon"></i>
