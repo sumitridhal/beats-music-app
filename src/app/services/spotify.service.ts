@@ -30,15 +30,19 @@ export class SpotifyLocalService {
     //     });
     // });
 
+    //this.getData('users/spotify/playlists').subscribe(data => console.log(data));
+    this.getData('users/21pz7umxlqgx5gnpo7pzg7rna/playlists').subscribe(data => console.log(data));
+
     // this.getData('artists?ids=04gDigrS5kc9YWfZHwBETP,4dpARuHxo51G3z768sgnrY,5Pwc4xIPtQLFEnJriah9YJ,06HL4z0CvFAxyc27GXpf02,5pKCCKE2ajJHZ9KAiaK11H,6VuMaDnrHyPL1p4EHjYLi7,1UTPBmNbXNTittyMJrNkvw')
     //   .subscribe(data => {
     //     console.log(data);
     //   });
     //
-    // this.getData('artists/04gDigrS5kc9YWfZHwBETP/top-tracks?country=US')
+    // this.getData('recommendations/available-genre-seeds')
     //   .subscribe(data => {
     //     console.log(data);
     //   });
+
 
     // this.getData('browse/new-releases?country=US')
     //   .subscribe(data => {
@@ -57,7 +61,7 @@ export class SpotifyLocalService {
 
     //this.getData('tracks/3n3Ppam7vgaVa1iaRUc9Lp').subscribe(data => console.log(data));
 
-    //this.getData('users/spotifycharts/playlists').subscribe(data => console.log(data));
+
 
     //
     // this.getData('browse/categories')
