@@ -43,20 +43,27 @@
   </div>
 
   <div class="ui six stackable link special cards popular-artist">
-    <div class="centered fluid card" *ngFor='let a of artistList'>
-      <div class="content top">
-        <i class="right floated star icon" [ngClass]="{'active': a.popularity > 85 }"></i>
-      </div>
-      <div class="image">
-        <img src="{{ a.images[0].url }}">
-      </div>
-      <div class="content bottom">
-        <div class="header">{{ a.name }}</div>
-        <div class="meta">
-          <span class="date"> {{ a.genres[0] }}</span>
-        </div>
-      </div>
+    <app-artist-card *ngFor='let a of artistList | slice:0:6 ; let i=index' [artist]='a' [id]="a.name"></app-artist-card>
+  </div>
+</div>
+
+<div class="ui box transparent" [hidden]="aURL != '/browse'">
+  <div class="head" style="margin-bottom: 18px;">
+    <span>Spotify Playlists</span>
+
+    <div class="ui right floated small button last active">
+      Show All
     </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle right icon"></i>
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle left icon"></i>
+    </div>
+  </div>
+
+  <div class="ui six stackable special cards playlist">
+    <app-playlist-card *ngFor='let p of spotifyPlaylist | newReleases:aURL | slice:0:18 ; let i=index' [playlist]='p' [id]="p.name"></app-playlist-card>
   </div>
 </div>
 

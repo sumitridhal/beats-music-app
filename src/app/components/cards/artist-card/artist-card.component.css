@@ -1,0 +1,63 @@
+.card {
+  font-size: 1em;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.card>.content.top {
+  margin-bottom: -30px;
+  z-index: 1;
+}
+
+.ui.cards>.card>.content {
+  padding: 0.3em 0.3em;
+}
+
+.card>.content.top .icon.active, .card>.content.top .icon:hover, .card>.content.top .icon:focus {
+  color: #CB1C4E;
+  opacity: 1;
+}
+
+.card>.image {
+  border-radius: 500rem !important;
+}
+
+.card>.image:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /*background: linear-gradient(transparent -30%, rgba(31, 31, 31, 0.76));*/
+}
+
+.card>.image:not(.ui)>img, .ui.cards>.card>.image:not(.ui)>img {
+  border: none;
+}
+
+.card>.content.bottom {
+  border: none;
+  text-align: center;
+  margin-top: -10px;
+  z-index: 1;
+}
+
+.card>.content.bottom .header {
+  /*color: #fff;*/
+}
+
+.card>.content>.header:not(.ui) {
+  font-weight: 400;
+  font-size: 0.95em;
+  margin-top: -0.21425em;
+  line-height: 1.28571429em;
+}
+
+.card>.content.bottom .meta {
+  /*color: rgba(255, 255, 255, 0.8);*/
+  font-size: 0.75em;
+  line-height: 1em;
+  text-transform: capitalize;
+}

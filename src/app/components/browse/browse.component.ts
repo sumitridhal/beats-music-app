@@ -13,6 +13,7 @@ export class BrowseComponent implements OnInit, OnDestroy {
   spotify: SpotifyLocalService;
   public newReleases: any;
   public artistList: any;
+  public spotifyPlaylist: any;
   aURL: string;
   private _subscription1: Subscription;
 
@@ -27,10 +28,15 @@ export class BrowseComponent implements OnInit, OnDestroy {
         this.newReleases = data;
       })
 
-    this.spotify.getArtistList()
-      .subscribe(data => {
-        this.artistList = data;
-      });
+      this.spotify.getArtistList()
+        .subscribe(data => {
+          this.artistList = data;
+        })
+
+        this.spotify.getSpotifyPlaylist()
+          .subscribe(data => {
+            this.spotifyPlaylist = data;
+          })
   }
 
   ngOnDestroy() {

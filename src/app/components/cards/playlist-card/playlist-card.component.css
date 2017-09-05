@@ -1,0 +1,91 @@
+
+.card {
+  font-size: 1em;
+  border: none;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.card>:only-child {
+  border-radius: 0rem !important;
+}
+
+.card>.content {
+  padding: 0.3em 0.3em;
+}
+
+.card>.image {
+  border-radius: 0!important;
+}
+
+.card>.content>.header:not(.ui) {
+  font-weight: 400;
+  font-size: 0.95em;
+  text-align: center;
+  margin-top: -0.01em;
+  line-height: 1.28571429em;
+  cursor: pointer;
+}
+
+.card>.content.top {
+  margin-bottom: -30px;
+  z-index: 1;
+}
+
+.card>.content.bottom {
+  border: none;
+  text-align: center;
+  margin-top: -40px;
+  z-index: 1;
+}
+
+.card>.content.bottom .header {
+  color: #fff;
+}
+
+.card>.content.top .icon {
+  color: #fff;
+  opacity: 1;
+}
+
+.card>.content.top .icon.active, .card>.content.top .icon:hover, .card>.content.top .icon:focus {
+  color: #CB1C4E;
+  opacity: 1;
+}
+
+.card>.image:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(transparent -30%, rgba(31, 31, 31, 0.76));
+}
+
+.ui.basic.massive.circular.icon.button {
+  height: 64px;
+  width: 64px;
+  border: 1px solid #a0a0a0;
+  background: none transparent;
+  outline: none;
+  transition: all .3s cubic-bezier(0, 0, 0, 2.41);
+}
+
+.ui.basic.massive.circular.icon.button>.icon {
+  border-color: #fff;
+  color: #fff;
+  margin-top: -2px !important;
+  padding: 0px 5px;
+  transform: scale(1.5);
+}
+
+.ui.basic.massive.button:hover {
+  border-color: #fff !important;
+  background: none transparent !important;
+  transform: scale(1.2);
+}
+
+.ui.basic.massive.button:focus {
+  background: none transparent !important;
+}

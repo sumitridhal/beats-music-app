@@ -1,0 +1,14 @@
+<div class="centered fluid card">
+  <div class="content top">
+    <i class="right floated star icon" [ngClass]="{'active': artist.popularity > 85 }"></i>
+  </div>
+  <div class="circular image">
+    <img src="{{ artist.images[0].url }}">
+  </div>
+  <div class="content bottom">
+    <div class="header">{{ artist.name }}</div>
+    <div class="meta">
+      <span class="date"> {{ artist.genres[0] }}</span>
+    </div>
+  </div>
+</div>

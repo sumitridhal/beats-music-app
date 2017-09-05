@@ -316,49 +316,6 @@ i.icon.active, .ui.active.button, .ui.celled.table tbody tr>td:nth-child(2) {
   line-height: 1.28571429em;
 }
 
-.ui.cards.popular-artist>.card>.content.top {
-  margin-bottom: -30px;
-  z-index: 1;
-}
-
-.ui.cards.popular-artist>.card>.content.bottom {
-  border: none;
-  text-align: center;
-  margin-top: -40px;
-  z-index: 1;
-}
-
-.ui.cards.popular-artist>.card>.content.bottom .header {
-  color: #fff;
-}
-
-.ui.cards.popular-artist>.card>.content.bottom .meta {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.75em;
-  line-height: 1em;
-  text-transform: capitalize;
-}
-
-.ui.cards.popular-artist>.card>.content.top .icon {
-  color: #fff;
-  opacity: 1;
-}
-
-.ui.cards.popular-artist>.card>.content.top .icon.active, .ui.cards.popular-artist>.card>.content.top .icon:hover, .ui.cards.popular-artist>.card>.content.top .icon:focus {
-  color: #CB1C4E;
-  opacity: 1;
-}
-
-.ui.cards.popular-artist>.card>.image:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: linear-gradient(transparent -30%, rgba(31, 31, 31, 0.76));
-}
-
 .ui.cards>.card .meta {
   font-size: 0.85em;
   color: rgba(0, 0, 0, .4);

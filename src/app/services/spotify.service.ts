@@ -19,6 +19,7 @@ export class SpotifyLocalService {
   private aws: string = 'http://ec2-54-69-27-164.us-west-2.compute.amazonaws.com:3000';
   public newReleases: BehaviorSubject<{}> = new BehaviorSubject({});
   public artistList: BehaviorSubject<{}> = new BehaviorSubject({});
+  public spotifyPlaylist: BehaviorSubject<{}> = new BehaviorSubject({});
 
   constructor(private http: Http) {
 
@@ -31,7 +32,8 @@ export class SpotifyLocalService {
     // });
 
     //this.getData('users/spotify/playlists').subscribe(data => console.log(data));
-    this.getData('users/21pz7umxlqgx5gnpo7pzg7rna/playlists').subscribe(data => console.log(data));
+    this.getData('users/digster.co.uk/playlists').subscribe(data => console.log(data));
+
 
     // this.getData('artists?ids=04gDigrS5kc9YWfZHwBETP,4dpARuHxo51G3z768sgnrY,5Pwc4xIPtQLFEnJriah9YJ,06HL4z0CvFAxyc27GXpf02,5pKCCKE2ajJHZ9KAiaK11H,6VuMaDnrHyPL1p4EHjYLi7,1UTPBmNbXNTittyMJrNkvw')
     //   .subscribe(data => {
@@ -120,12 +122,14 @@ export class SpotifyLocalService {
   clientCredentials(): Promise<any> {
     let releases = this.getData('browse/new-releases?country=US&offset=0&limit=48')
     let artists = this.getData('artists?ids=04gDigrS5kc9YWfZHwBETP,4dpARuHxo51G3z768sgnrY,5Pwc4xIPtQLFEnJriah9YJ,06HL4z0CvFAxyc27GXpf02,6VuMaDnrHyPL1p4EHjYLi7,1UTPBmNbXNTittyMJrNkvw')
+    let spotify_playlist = this.getData('users/spotify/playlists')
 
-    return Observable.forkJoin([releases, artists])
+    return Observable.forkJoin([releases, artists, spotify_playlist])
     .toPromise()
     .then((result: any) => {
       this.newReleases.next(result[0].albums.items)
       this.artistList.next(result[1].artists)
+      this.spotifyPlaylist.next(result[2].items)
     })
     .catch((err: any) => Promise.resolve());;
 
@@ -137,6 +141,10 @@ export class SpotifyLocalService {
 
   public getArtistList(): Observable<any> {
     return this.artistList.asObservable();
+  }
+
+  public getSpotifyPlaylist(): Observable<any> {
+    return this.spotifyPlaylist.asObservable();
   }
 
   public getData(api) {
