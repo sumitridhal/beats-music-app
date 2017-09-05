@@ -1,19 +1,28 @@
+.cover {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
 .pusher {
   /*padding-top: 78px;*/
 }
 
-.fixed + .pusher, .fixed ~ .pusher {
+.fixed+.pusher, .fixed~.pusher {
   margin-top: 78px;
 }
 
 .ui.container {
-    width: 95%;
-    margin-left: auto!important;
-    margin-right: auto!important;
+  width: 95%;
+  margin-left: auto!important;
+  margin-right: auto!important;
 }
 
-.ui.dimmer{
-  height: 950px;
+.ui.dimmer {
+  /*height: 950px;*/
   /*margin-top: 52.63px;*/
   /*margin-top: -9.37px;*/
 }

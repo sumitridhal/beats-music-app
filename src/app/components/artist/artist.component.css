@@ -163,7 +163,7 @@ header.artist-header h1 {
 
 .ui.table {
   border: none;
-  background: #F2F3F5;
+  /*background: #F2F3F5;*/
   padding: 1em 2em 0.5em 2em;
 }
 
@@ -204,7 +204,7 @@ i.icon.heart:not(.empty), i.icon.active, .ui.active.button, .ui.celled.table tbo
 
 .ui.box {
   border: none;
-  background: #F2F3F5;
+  /*background: #F2F3F5;*/
   padding: 1em 2em 0.5em 2em;
   margin: 2rem 0rem;
   border-radius: .28571429rem;

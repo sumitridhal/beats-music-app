@@ -1,4 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+/* style.css */
+
+body.transparent {
+  background: transparent;
+}
+
+body.light {
+  background: #fff;
+}
+
+body.dark {
+  background: #181818;
+  color: #fff;
+}
+
+body.dark .ui.table, body.dark .ui.menu .item, body.dark .ui.box .head, body.dark .button, body.dark .ui.card>.content>.header, body.dark .ui.cards>.card>.content>.header, body.dark .ui.card .meta, body.dark .ui.cards>.card .meta {
+  color: #fff !important;
+}
+
+body.dark .cover {
+  background-image: linear-gradient(rgb(62, 60, 60), rgb(41, 40, 40) 85%);
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 0;
+  top: 0;
+  position: fixed;
+  will-change: transform;
+}
+
+.ui.card, .ui.cards>.card, .ui.menu {
+  background: transparent !important;
+}
 
 .transform--84 {
   transform: translate3d(84px, 0, 0);

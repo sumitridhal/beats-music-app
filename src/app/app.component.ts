@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from "./services/auth.service";
 import { SidebarService } from "./components/sidebar/sidebar.service";
 import { Subscription } from 'rxjs/Subscription';
@@ -11,7 +11,7 @@ declare var $: any;
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   isAuth: boolean;
   isVisible: boolean = true;
   private _subscription1: Subscription;
@@ -43,6 +43,10 @@ export class AppComponent implements OnDestroy {
         this.sBar.set(false);
       }
     }, 0)
+  }
+
+
+  ngOnInit(){
   }
 
   ngOnDestroy() {
