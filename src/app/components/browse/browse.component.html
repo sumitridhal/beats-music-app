@@ -3,6 +3,13 @@
   <div class="header-buttons">
     <button class="big ui button green">PLAY ALL</button>
   </div>
+  <div class="ui center aligned container">
+    <div class="ui secondary pointing menu">
+      <a class="active item">Featured</a>
+      <a class="item">Genres & Moods</a>
+      <a class="item">Discover</a>
+    </div>
+  </div>
 </header>
 
 <div class="ui box transparent">
@@ -69,7 +76,7 @@
 
 <div class="ui stackable two column grid" [hidden]="aURL != '/browse'">
   <div class="column">
-    <div class="ui box transparent">
+    <div class="ui box transparent song-list">
       <div class="head" style="margin-bottom: 18px;">
         <span>Most Popular This Week</span>
       </div>
@@ -90,9 +97,6 @@
             <td class="collapsing">
               <i class="heart icon"></i>
             </td>
-            <td class="collapsing">
-              <i class="ellipsis horizontal icon"></i>
-            </td>
           </tr>
         </tbody>
         <tfoot>
@@ -111,7 +115,7 @@
     </div>
   </div>
   <div class="column">
-    <div class="ui box transparent">
+    <div class="ui box transparent song-list">
       <div class="head" style="margin-bottom: 18px;">
         <span>Most Recommended</span>
       </div>
@@ -131,9 +135,6 @@
             </td>
             <td class="collapsing">
               <i class="heart icon"></i>
-            </td>
-            <td class="collapsing">
-              <i class="ellipsis horizontal icon"></i>
             </td>
           </tr>
         </tbody>

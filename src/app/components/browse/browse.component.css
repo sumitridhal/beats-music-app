@@ -1,7 +1,10 @@
 [hidden] {
-    display: none !important;
+  display: none !important;
 }
+
+
 /************************************************************************************************************************/
+
 header {
   margin: 0;
   padding: 0;
@@ -48,13 +51,13 @@ header.artist-header h1 {
   margin: 0 auto;
   max-width: 70%;
   display: block;
-  text-align: left;
+  text-align: center;
 }
 
 .header-buttons {
   text-align: center;
-  margin-bottom: 30px;
-  margin-left: -800px;
+  /*margin-bottom: 30px;
+  margin-left: -800px;*/
 }
 
 .header-buttons .ui.button {
@@ -124,6 +127,7 @@ header.artist-header h1 {
 .ui.secondary.pointing.menu {
   width: 100%;
   padding: 20px 0;
+  border-bottom: none;
 }
 
 .ui.secondary.pointing.menu a.item {
@@ -179,6 +183,7 @@ header.artist-header h1 {
 
 .ui.celled.table tbody tr td {
   border: none;
+  height: 47px;
 }
 
 .ui.celled.table tbody tr:not(:last-child) td {
@@ -194,11 +199,19 @@ header.artist-header h1 {
   text-align: inherit;
 }
 
-.ui.table tbody td > i.icon:hover {
+.ui.table tbody tr td:nth-child(1) {
+  padding: .1em .6em;
+}
+
+.ui.table tbody tr td:nth-child(1) >.ui.mini.image {
+  width: 40px;
+}
+
+.ui.table tbody td>i.icon:hover {
   color: #CB1C4E;
 }
 
-.ui.table tbody td > i.plus.icon:hover::before {
+.ui.table tbody td>i.plus.icon:hover::before {
   content: "\f00c";
 }
 
@@ -251,6 +264,10 @@ i.icon.active, .ui.active.button, .ui.celled.table tbody tr>td:nth-child(2) {
 
 .ui.box.transparent {
   background: none transparent;
+}
+
+.ui.box.transparent.song-list {
+  padding: 0.5em;
 }
 
 .ui.box .head {

@@ -9,15 +9,28 @@ body.light {
 }
 
 body.dark {
-  background: #181818;
+  background: #1A1A1A;
   color: #fff;
 }
 
-body.dark .ui.table, body.dark .ui.menu .item, body.dark .ui.box .head, body.dark .button, body.dark .ui.card>.content>.header, body.dark .ui.cards>.card>.content>.header, body.dark .ui.card .meta, body.dark .ui.cards>.card .meta {
+.dark .ui.table,.dark .ui.table thead th, .dark .ui.menu .item, .dark .ui.box .head, .dark .button, .dark .ui.card>.content>.header, .dark .ui.cards>.card>.content>.header {
   color: #fff !important;
 }
 
-body.dark .cover {
+.dark .ui.card .meta, .dark .ui.cards>.card .meta, .dark table>tbody>tr>td:nth-child(5) {
+  color: #c3b9b9 !important;
+}
+
+.dark table>tbody>tr>td {
+  font-size: 1em;
+  font-weight: 300;
+}
+
+.dark .ui.celled.table tbody tr td {
+  border-bottom: 1px solid rgba(213, 220, 228, 0.1) !important;
+}
+
+.dark .cover {
   background-image: linear-gradient(rgb(62, 60, 60), rgb(41, 40, 40) 85%);
   width: 100%;
   height: 100vh;
