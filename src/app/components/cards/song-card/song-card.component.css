@@ -10,6 +10,16 @@
   border-radius: 0rem !important;
 }
 
+.image.cover-art.actionable {
+    transition: all .1s ease;
+    cursor: pointer;
+}
+
+.image.cover-art.actionable:active {
+    transform: scale3d(.93,.93,1);
+    box-shadow: none;
+}
+
 .card>.content {
   padding: 0.3em 0.3em;
 }

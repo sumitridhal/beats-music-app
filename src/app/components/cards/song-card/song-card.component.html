@@ -1,6 +1,6 @@
 <div class="centered fluid card" (mouseover)="changeStyle($event)" (mouseout)="changeStyle($event)">
-  <div class="blurring dimmable image">
-    <div class="ui dimmer transition visible" [ngClass]="class">
+  <div class="blurring dimmable image cover-art actionable" [ngClass]="dim">
+    <div class="ui dimmer transition" [ngClass]="trans">
       <div class="content">
         <div class="center">
           <button class="ui basic circular massive icon button"><i class="play icon"></i></button>

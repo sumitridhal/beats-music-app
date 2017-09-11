@@ -6,14 +6,17 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
   styleUrls: ['./song-card.component.css']
 })
 export class SongCardComponent implements OnInit {
-  class: string = 'inactive';
+  //trans: string = 'animating fade in inactive';
+  trans: string = 'inactive';
+  dim: string = '';
   @Input() song: any;
   @Input() name: string;
 
   constructor(private el: ElementRef) { }
 
   changeStyle($event) {
-    this.class = $event.type == 'mouseover' ? 'active' : 'inactive';
+    this.trans = $event.type == 'mouseover' ? 'visible active' : 'inactive';
+    //this.dim = $event.type == 'mouseover' ? 'dimmed' : '';
   }
 
 
