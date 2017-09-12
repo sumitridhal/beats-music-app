@@ -36,6 +36,7 @@ import { NewReleasesPipe } from './pipe/new-releases.pipe';
 import { SongCardComponent } from './components/cards/song-card/song-card.component';
 import { PlaylistCardComponent } from './components/cards/playlist-card/playlist-card.component';
 import { ArtistCardComponent } from './components/cards/artist-card/artist-card.component';
+import { GenreCardComponent } from './components/cards/genre-card/genre-card.component';
 
 
 export function spotifyAuthFactory(spotifyAuth: SpotifyLocalService): Function {
@@ -79,7 +80,8 @@ const routes: Routes = [
     NewReleasesPipe,
     SongCardComponent,
     PlaylistCardComponent,
-    ArtistCardComponent
+    ArtistCardComponent,
+    GenreCardComponent
   ],
   imports: [
     BrowserModule,

@@ -20,9 +20,14 @@ export class SpotifyLocalService {
   public newReleases: BehaviorSubject<{}> = new BehaviorSubject({});
   public artistList: BehaviorSubject<{}> = new BehaviorSubject({});
   public spotifyPlaylist: BehaviorSubject<{}> = new BehaviorSubject({});
+  public playlist01: BehaviorSubject<{}> = new BehaviorSubject({});
+  public playlist02: BehaviorSubject<{}> = new BehaviorSubject({});
+  public playlist03: BehaviorSubject<{}> = new BehaviorSubject({});
+  public playlist04: BehaviorSubject<{}> = new BehaviorSubject({});
+  public playlist05: BehaviorSubject<{}> = new BehaviorSubject({});
 
   constructor(private http: Http) {
-
+    let that = this;
     // IntervalObservable.create(3600).subscribe(n => {
     //   console.log('interval');
     //   this.searchArtist('adele')
@@ -31,9 +36,14 @@ export class SpotifyLocalService {
     //     });
     // });
 
+    //21pz7umxlqgx5gnpo7pzg7rna
     //this.getData('users/spotify/playlists').subscribe(data => console.log(data));
-    this.getData('users/digster.co.uk/playlists').subscribe(data => console.log(data));
-
+    //this.getData('users/digster.co.uk/playlists').subscribe(data => console.log(data));
+      this.getData('users/21pz7umxlqgx5gnpo7pzg7rna/playlists').subscribe(list => that.playlist01.next(list));
+      this.getData('users/digster.co.uk/playlists?offset=0&limit=24').subscribe(list => that.playlist02.next(list));
+      this.getData('users/starbucks/playlists?offset=0&limit=24').subscribe(list => that.playlist03.next(list));
+      this.getData('users/filtr/playlists?offset=0&limit=24').subscribe(list => that.playlist04.next(list));
+      this.getData('users/filtr.ca/playlists?offset=1&limit=25').subscribe(list => that.playlist05.next(list));
 
     // this.getData('artists?ids=04gDigrS5kc9YWfZHwBETP,4dpARuHxo51G3z768sgnrY,5Pwc4xIPtQLFEnJriah9YJ,06HL4z0CvFAxyc27GXpf02,5pKCCKE2ajJHZ9KAiaK11H,6VuMaDnrHyPL1p4EHjYLi7,1UTPBmNbXNTittyMJrNkvw')
     //   .subscribe(data => {
@@ -122,7 +132,7 @@ export class SpotifyLocalService {
   clientCredentials(): Promise<any> {
     let releases = this.getData('browse/new-releases?country=US&offset=0&limit=48')
     let artists = this.getData('artists?ids=04gDigrS5kc9YWfZHwBETP,4dpARuHxo51G3z768sgnrY,5Pwc4xIPtQLFEnJriah9YJ,06HL4z0CvFAxyc27GXpf02,6VuMaDnrHyPL1p4EHjYLi7,1UTPBmNbXNTittyMJrNkvw')
-    let spotify_playlist = this.getData('users/spotify/playlists')
+    let spotify_playlist = this.getData('users/spotify/playlists?offset=0&limit=48')
 
     return Observable.forkJoin([releases, artists, spotify_playlist])
     .toPromise()
@@ -145,6 +155,26 @@ export class SpotifyLocalService {
 
   public getSpotifyPlaylist(): Observable<any> {
     return this.spotifyPlaylist.asObservable();
+  }
+
+  public getMyPlaylists(): Observable<any> {
+    return this.playlist01.asObservable();
+  }
+
+  public getPlaylist02(): Observable<any> {
+    return this.playlist02.asObservable();
+  }
+
+  public getPlaylist03(): Observable<any> {
+    return this.playlist03.asObservable();
+  }
+
+  public getPlaylist04(): Observable<any> {
+    return this.playlist04.asObservable();
+  }
+
+  public getPlaylist05(): Observable<any> {
+    return this.playlist05.asObservable();
   }
 
   public getData(api) {

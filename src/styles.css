@@ -46,6 +46,11 @@ body.dark {
   background: transparent !important;
 }
 
+.ui.card>.image, .ui.cards>.card>.image {
+  border: none;
+  border-radius: 0 !important;
+}
+
 .transform--84 {
   transform: translate3d(84px, 0, 0);
   overflow-x: hidden;

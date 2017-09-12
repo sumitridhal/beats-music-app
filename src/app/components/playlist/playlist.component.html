@@ -1,3 +1,132 @@
-<p>
-  playlist works!
-</p>
+<!-- <div *ngFor='let p of myPlaylist'>
+  <p>{{p.name}}</p>
+  <img src="{{ p.images[0].url }}">
+  <div *ngFor='let t of p.tracks.items'>
+    <p>{{t.track.name}}</p>
+    <p>{{t.track.album.artists[0].name}}</p>
+    <p>{{t.track.album.images[0].url}}</p>
+    <img src="{{ t.track.album.images[0].url }}">
+  </div>
+</div> -->
+
+<div class="ui box transparent">
+  <div class="head">
+    <span>My Playlists</span>
+
+    <div class="ui right floated small button last active">
+      Show All
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle right icon"></i>
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle left icon"></i>
+    </div>
+  </div>
+
+  <div class="ui six stackable special cards playlist">
+    <div class="centered fluid card" app-genre-card *ngFor='let p of myPlaylist | slice:0:6 ; let i=index' [image]='p.images[0].url' [name]="p.name"></div>
+  </div>
+</div>
+
+
+<div class="ui box transparent">
+  <div class="head">
+    <span>Digster Playlists</span>
+
+    <div class="ui right floated small button last active">
+      Show All
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle right icon"></i>
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle left icon"></i>
+    </div>
+  </div>
+
+  <div class="ui six stackable special cards playlist">
+    <div class="centered fluid card" app-genre-card *ngFor='let p of playlist02 | slice:0:6 ; let i=index' [image]='p.images[0].url' [name]="p.name"></div>
+  </div>
+</div>
+
+
+<div class="ui box transparent">
+  <div class="head">
+    <span>Spotify Playlists</span>
+
+    <div class="ui right floated small button last active">
+      Show All
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle right icon"></i>
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle left icon"></i>
+    </div>
+  </div>
+
+  <div class="ui six stackable special cards playlist">
+    <div class="centered fluid card" app-genre-card *ngFor='let p of spotifyP | slice:0:6; let i=index' [image]='p.images[0].url' [name]="p.name"></div>
+  </div>
+</div>
+
+<div class="ui box transparent">
+  <div class="head">
+    <span>Starbucks Playlists</span>
+
+    <div class="ui right floated small button last active">
+      Show All
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle right icon"></i>
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle left icon"></i>
+    </div>
+  </div>
+
+  <div class="ui six stackable special cards playlist">
+    <div class="centered fluid card" app-genre-card *ngFor='let p of playlist03 | slice:0:6; let i=index' [image]='p.images[0].url' [name]="p.name"></div>
+  </div>
+</div>
+
+<div class="ui box transparent">
+  <div class="head">
+    <span>Filtr Playlists</span>
+
+    <div class="ui right floated small button last active">
+      Show All
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle right icon"></i>
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle left icon"></i>
+    </div>
+  </div>
+
+  <div class="ui six stackable special cards playlist">
+    <div class="centered fluid card" app-genre-card *ngFor='let p of playlist04 | slice:0:6; let i=index' [image]='p.images[0].url' [name]="p.name"></div>
+  </div>
+</div>
+
+<div class="ui box transparent">
+  <div class="head">
+    <span>Filtr Canada Playlists</span>
+
+    <div class="ui right floated small button last active">
+      Show All
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle right icon"></i>
+    </div>
+    <div class="ui icon right floated small button active">
+      <i class="angle left icon"></i>
+    </div>
+  </div>
+
+  <div class="ui six stackable special cards playlist">
+    <div class="centered fluid card" app-genre-card *ngFor='let p of playlist05 | slice:0:6; let i=index' [image]='p.images[0].url' [name]="p.name"></div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+  <div class="blurring dimmable image" (mouseover)="changeStyle($event)" (mouseout)="changeStyle($event)">
+    <div class="ui dimmer transition visible" [ngClass]="class">
+      <div class="content">
+        <div class="center">
+          <button class="ui basic circular massive icon button"><i class="play icon"></i></button>
+        </div>
+      </div>
+    </div>
+    <img src="{{ image }}">
+  </div>
+  <div class="content">
+    <div class="header">{{ name }}</div>
+  </div>
