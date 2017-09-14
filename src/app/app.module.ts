@@ -37,6 +37,7 @@ import { SongCardComponent } from './components/cards/song-card/song-card.compon
 import { PlaylistCardComponent } from './components/cards/playlist-card/playlist-card.component';
 import { ArtistCardComponent } from './components/cards/artist-card/artist-card.component';
 import { GenreCardComponent } from './components/cards/genre-card/genre-card.component';
+import { MillisecondPipe } from './pipe/millisecond.pipe';
 
 
 export function spotifyAuthFactory(spotifyAuth: SpotifyLocalService): Function {
@@ -60,7 +61,7 @@ const routes: Routes = [
   { path: 'radio', component: RadioComponent },
   { path: 'songs', component: BrowseComponent },
   { path: 'album', component: BrowseComponent },
-  { path: 'artist', component: ArtistComponent },
+  { path: 'artist/:id', component: ArtistComponent },
   { path: 'playlist', component: PlaylistComponent }
 ];
 
@@ -81,7 +82,8 @@ const routes: Routes = [
     SongCardComponent,
     PlaylistCardComponent,
     ArtistCardComponent,
-    GenreCardComponent
+    GenreCardComponent,
+    MillisecondPipe
   ],
   imports: [
     BrowserModule,

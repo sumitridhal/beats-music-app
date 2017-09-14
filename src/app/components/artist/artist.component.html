@@ -1,5 +1,5 @@
-<header class="artist-header" style="background-image: url('https://i.scdn.co/image/d5d36ef5919bb439fb457549fdc4a0dcfe7b12f4');">
-  <h1 class="large">Maroon 5</h1>
+<header class="artist-header" [ngStyle]="{'background-image': 'url(' + artistMeta.images[0].url + ')'}">
+  <h1 class="large">{{ artistMeta.name }}</h1>
   <div class="header-buttons">
     <button class="big ui button green">PLAY</button>
     <button class="big ui button black">FAVORITE</button>
@@ -33,101 +33,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr *ngFor='let t of topTracks; let i=index;'>
       <td class="collapsing">
-        <img class="ui mini spaced image" src="https://is4-ssl.mzstatic.com/image/thumb/Music122/v4/4a/e5/dd/4ae5dd20-f3a0-579d-2338-bdb355df04e8/source/1200x630bb.jpg">
+        <img class="ui mini spaced image" src="{{ t.album.images[0].url }}">
       </td>
-      <td class="collapsing">1</td>
-      <td class="collapsing">
-        <i class="plus icon"></i>
-      </td>
-      <td>Cold</td>
-      <td>
-        <span>Cold(Hot Shade  Mike Perry Remix)</span>
-      </td>
-      <td class="collapsing">3:40</td>
-      <td class="collapsing">
-        <i class="heart icon"></i>
-      </td>
-      <td class="collapsing">
-        <i class="ellipsis horizontal icon"></i>
-      </td>
-    </tr>
-    <tr>
-      <td class="collapsing">
-        <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png">
-      </td>
-      <td class="collapsing">2</td>
-      <td class="collapsing">
-        <i class="active checkmark icon"></i>
-      </td>
-      <td>Maps</td>
-      <td>
-        <span>V</span>
-      </td>
-      <td class="collapsing">3:40</td>
-      <td class="collapsing">
-        <i class="empty heart icon"></i>
-      </td>
-      <td class="collapsing">
-        <i class="ellipsis horizontal icon"></i>
-      </td>
-    </tr>
-    <tr>
-      <td class="collapsing">
-        <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png">
-      </td>
-      <td class="collapsing">3</td>
+      <td class="collapsing">{{ i+1 }}</td>
       <td class="collapsing">
         <i class="plus icon"></i>
       </td>
-      <td>Sugar</td>
+      <td>{{ t.name }}</td>
       <td>
-        <span>V</span>
+        <span>{{ t.album.name }}</span>
       </td>
-      <td class="collapsing">3:40</td>
+      <td class="collapsing">{{ t.duration_ms | millisecond }}</td>
       <td class="collapsing">
-        <i class="heart icon"></i>
-      </td>
-      <td class="collapsing">
-        <i class="ellipsis horizontal icon"></i>
-      </td>
-    </tr>
-    <tr>
-      <td class="collapsing">
-        <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png">
-      </td>
-      <td class="collapsing">4</td>
-      <td class="collapsing">
-        <i class="plus icon"></i>
-      </td>
-      <td>Daylight</td>
-      <td>
-        <span>Overexposed</span>
-      </td>
-      <td class="collapsing">3:40</td>
-      <td class="collapsing">
-        <i class="empty heart icon"></i>
-      </td>
-      <td class="collapsing">
-        <i class="ellipsis horizontal icon"></i>
-      </td>
-    </tr>
-    <tr>
-      <td class="collapsing">
-        <img class="ui mini spaced image" src="https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png">
-      </td>
-      <td class="collapsing">5</td>
-      <td class="collapsing">
-        <i class="plus icon"></i>
-      </td>
-      <td>Payphone</td>
-      <td>
-        <span>Overexposed</span>
-      </td>
-      <td class="collapsing">3:40</td>
-      <td class="collapsing">
-        <i class="empty heart icon"></i>
+        <i class="heart icon" [ngClass]="{ 'empty': t.popularity < 85 }"></i>
       </td>
       <td class="collapsing">
         <i class="ellipsis horizontal icon"></i>
@@ -153,109 +73,6 @@
   </div>
 
   <div class="ui six stackable special cards">
-    <div class="centered fluid card" >
-      <div class="blurring dimmable image" >
-        <div class="ui dimmer transition visible active" >
-          <div class="content">
-            <div class="center">
-              <button class="ui basic circular massive icon button"><i class="play icon"></i></button>
-            </div>
-          </div>
-        </div>
-        <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png">
-      </div>
-      <div class="content">
-        <div class="header">V</div>
-        <div class="meta">
-          <span class="date">2014</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="centered fluid card" (mouseover)="changeStyle($event)" (mouseout)="changeStyle($event)">
-      <div class="blurring dimmable image" [ngClass]="dimmed">
-        <div class="ui dimmer transition" [ngClass]="visibility" [ngStyle]="{ 'animation-duration': duration }">
-          <div class="content">
-            <div class="center">
-              <button class="circular ui basic icon button"><i class="play icon"></i></button>
-            </div>
-          </div>
-        </div>
-        <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png">
-      </div>
-      <div class="content">
-        <div class="header">V (Delux)</div>
-        <div class="meta">
-          <span class="date">2014</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="centered fluid card">
-      <div class="image">
-        <img src="https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png">
-      </div>
-      <div class="content">
-        <div class="header">Overexposed</div>
-        <div class="meta">
-          <span class="date">2012</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="image">
-        <img src="https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png">
-      </div>
-      <div class="content">
-        <div class="header">Overexposed Commentary</div>
-        <div class="meta">
-          <span class="date">2012</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="image">
-        <img src="https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png">
-      </div>
-      <div class="content">
-        <div class="header">Overexposed (Delux)</div>
-        <div class="meta">
-          <span class="date">2012</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="image">
-        <img src="https://lastfm-img2.akamaized.net/i/u/770x0/bbf019744c23450f80c16a492c6917e0.jpg">
-      </div>
-      <div class="content">
-        <div class="header">Songs About Jane</div>
-        <div class="meta">
-          <span class="date">2002</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="image">
-        <img src="https://upload.wikimedia.org/wikipedia/en/7/71/Maroon_5_-_Hands_All_Over.png">
-      </div>
-      <div class="content">
-        <div class="header">Hands All Over (Delux)</div>
-        <div class="meta">
-          <span class="date">2010</span>
-        </div>
-      </div>
-    </div>
-    <div class="centered fluid card">
-      <div class="image">
-        <img src="https://upload.wikimedia.org/wikipedia/en/7/71/Maroon_5_-_Hands_All_Over.png">
-      </div>
-      <div class="content">
-        <div class="header">Hands All Over</div>
-        <div class="meta">
-          <span class="date">2010</span>
-        </div>
-      </div>
-    </div>
+    <app-song-card *ngFor='let a of albums; let i=index' [name]="a.name" [meta]='a.artists[0].name' [img]='a.images[0].url'></app-song-card>
   </div>
 </div>

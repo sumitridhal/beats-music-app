@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import { SpotifyLocalService } from "../../services/spotify.service";
 
 @Component({
@@ -6,57 +8,39 @@ import { SpotifyLocalService } from "../../services/spotify.service";
   templateUrl: './artist.component.html',
   styleUrls: ['./artist.component.css']
 })
-export class ArtistComponent implements OnInit {
+export class ArtistComponent implements OnInit, OnDestroy {
   spotify: SpotifyLocalService;
-  visibility: string = 'transition hidden';
-  dimmed: string = '';
-  duration: string = '500ms';
+  private _subscription1: Subscription;
+  artistId: number;
+  artistMeta: any;
+  public topTracks: any;
+  public albums: any;
 
-  constructor(spotify: SpotifyLocalService) {
+  constructor(spotify: SpotifyLocalService, private route: ActivatedRoute) {
     this.spotify = spotify;
   }
 
-  changeStyle($event) {
-    if ($event.type == 'mouseover') {
-      this.visibility = 'animating fade in';
-      this.dimmed = 'dimmed';
-      setTimeout(function() {
-        this.visibility = 'visible active';
-      }, 200);
-    }
-    else {
-      this.visibility = 'animating fade out';
-      this.dimmed = '';
-      setTimeout(function() {
-        this.visibility = 'transition hidden';
-      }, 200);
+  ngOnInit() {
+    // Get parent ActivatedRoute of this route.
+    this._subscription1 = this.route.params.subscribe(params => {
+      this.artistId = params['id'];
+      console.log(params);
 
-    }
+      this.spotify.getData('artists/' + this.artistId).subscribe(data => this.artistMeta = data);
+      this.spotify.getData('artists/' + this.artistId + '/top-tracks?country=US').subscribe(data => {
+        this.topTracks = null;
+        this.topTracks = data.tracks
+      });
+      this.spotify.getData('artists/' + this.artistId + '/albums?country=US').subscribe(data => {
+        this.albums = null; 
+        this.albums = data.items
+      });
+    });
+
   }
 
-
-  ngOnInit() {
-
-    // this.musixmatch.getAlbum('1YcUpUihfAEU7L85e3VZQO')
-    //   .subscribe(data => {
-    //     console.log(JSON.stringify(data,null,4));
-    //   });
-
-    // this.musicgraph.getArtist('ee2564c7-a6b5-11e0-b446-00251188dd67')
-    // .subscribe(data => {
-    //    console.log(data);
-    //  });
-
-    // this.spotify.getArtistById('0OdUWJ0sBjDrqHygGUXeCF ')
-    // .subscribe(data => {
-    //   console.log(data);
-    // });
-    //
-    // this.spotify.searchArtist('Adele')
-    // .subscribe(data => {
-    //   console.log(data);
-    // });
-
+  ngOnDestroy() {
+    this._subscription1.unsubscribe();
   }
 
 }

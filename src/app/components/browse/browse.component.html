@@ -30,7 +30,7 @@
   </div>
 
   <div class="ui six stackable special cards">
-    <app-song-card *ngFor='let s of newReleases | newReleases:aURL | slice:0:(aURL == "/browse")?6:48 ; let i=index' [song]='s' [name]="s.name"></app-song-card>
+    <app-song-card *ngFor='let s of newReleases | newReleases:aURL | slice:0:(aURL == "/browse")?6:48 ; let i=index' [name]="s.name" [meta]='s.artists[0].name' [img]='s.images[0].url'></app-song-card>
   </div>
 </div>
 

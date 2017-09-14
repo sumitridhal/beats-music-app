@@ -9,8 +9,9 @@ export class SongCardComponent implements OnInit {
   //trans: string = 'animating fade in inactive';
   trans: string = 'inactive';
   dim: string = '';
-  @Input() song: any;
   @Input() name: string;
+  @Input() meta: string;
+  @Input() img: string;
 
   constructor(private el: ElementRef) { }
 

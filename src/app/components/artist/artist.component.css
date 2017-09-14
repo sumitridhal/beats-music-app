@@ -10,7 +10,7 @@ header {
 header.artist-header {
   position: relative;
   align-items: center;
-  background-size: cover;
+  background-size: contain;
   background-position: 50%;
   padding-left: 84px;
   padding-top: 200px;
