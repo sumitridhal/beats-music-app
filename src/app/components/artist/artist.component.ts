@@ -15,6 +15,10 @@ export class ArtistComponent implements OnInit, OnDestroy {
   artistMeta: any;
   public topTracks: any;
   public albums: any;
+  img: string = '';
+  name: string = 'artist';
+  about: any;
+  headerImages: string = '';
 
   constructor(spotify: SpotifyLocalService, private route: ActivatedRoute) {
     this.spotify = spotify;
@@ -26,13 +30,25 @@ export class ArtistComponent implements OnInit, OnDestroy {
       this.artistId = params['id'];
       console.log(params);
 
-      this.spotify.getData('artists/' + this.artistId).subscribe(data => this.artistMeta = data);
+      this.spotify.getLocalMeta(this.artistId).subscribe(data => {
+        if (data) {
+          this.about = data.bio
+          this.headerImages = data.headerImages[0].url;
+        } else { this.headerImages = this.img; }
+      });
+
+      this.spotify.getData('artists/' + this.artistId).subscribe(data => {
+        this.img = data.images[0].url;
+        this.name = data.name
+        this.artistMeta = data
+      });
+
       this.spotify.getData('artists/' + this.artistId + '/top-tracks?country=US').subscribe(data => {
         this.topTracks = null;
         this.topTracks = data.tracks
       });
       this.spotify.getData('artists/' + this.artistId + '/albums?country=US').subscribe(data => {
-        this.albums = null; 
+        this.albums = null;
         this.albums = data.items
       });
     });

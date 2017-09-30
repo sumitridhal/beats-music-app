@@ -1,4 +1,5 @@
-<div class="ui box transparent">
+<div class="ui box transparent" [attr.data-img]="img">
+  <div class="backgroung img" [ngStyle]="{'background-image': 'url(' + img + ')'}"></div>
   <div class="ui block inner">
     <div class="head bold">
       <span>About Artist</span>
@@ -6,10 +7,10 @@
     <div class="ui three stackable special cards">
       <div class="centered fluid card" style="width: calc(33.33333333% + 0.8em);">
         <div class="blurring dimmable image cover-art actionable">
-          <img src="https://i.scdn.co/image/a6b50b62941f169aea7a48039a509f643c8c69e3">
+          <img src="{{img}}" asyc>
         </div>
         <div class="content">
-          <div class="header">Maroon 5</div>
+          <div class="header">{{name}}</div>
         </div>
       </div>
 
@@ -17,13 +18,11 @@
         <div class="content">
           <div class="separator-container">
             <!-- <div class="separator-line"></div> -->
-            <div class="separator-text">Maroon 5 is an American pop rock band that originated in Los Angeles, California.[9][10] It currently consists of lead vocalist Adam Levine, keyboardist and rhythm guitarist Jesse Carmichael, bassist Mickey Madden, lead guitarist James Valentine, drummer Matt Flynn and keyboardist PJ Morton.
-              A mix of polished pop/rock and neo-soul made Maroon 5 one of the most popular bands of the new millennium, with songs like "This Love," "She Will Be Loved," and "Makes Me Wonder" all topping the charts worldwide.
-            </div>
+            <div class="separator-text">{{bio}}</div>
             <!-- <div class="separator-line"></div> -->
           </div>
           <div class="meta">
-            <span>   </span>
+            <span></span>
           </div>
         </div>
       </div>
