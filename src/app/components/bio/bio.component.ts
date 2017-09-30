@@ -21,8 +21,8 @@ export class BioComponent implements OnInit {
        this._subscription1 = this.route.params.subscribe(params => {
          this.artistId = params['id'];
          console.log(params);
-   
-         this.spotify.getData('artists/' + this.artistId).subscribe(data => this.artistMeta = data);
+
+         this.spotify.getData('artists/' + this.artistId).subscribe(data => {this.artistMeta = data; console.log(data);} );
        })
 
      }
