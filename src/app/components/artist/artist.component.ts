@@ -28,15 +28,15 @@ export class ArtistComponent implements OnInit, OnDestroy {
     // Get parent ActivatedRoute of this route.
     this._subscription1 = this.route.params.subscribe(params => {
       this.artistId = params['id'];
-      this.headerImages = null;
       console.log(params);
 
       this.spotify.getLocalMeta(this.artistId).subscribe(data => {
+        this.headerImages = null;
         if (data) {
           this.about = data.bio
           this.headerImages = data.headerImages[0].url;
         } else { this.headerImages = this.img; }
-      });
+      })
 
       this.spotify.getData('artists/' + this.artistId).subscribe(data => {
         this.img = data.images[0].url;
@@ -45,16 +45,17 @@ export class ArtistComponent implements OnInit, OnDestroy {
         if(!this.headerImages) {
           this.headerImages = this.img;
         }
-      });
+      })
 
       this.spotify.getData('artists/' + this.artistId + '/top-tracks?country=US').subscribe(data => {
         this.topTracks = null;
         this.topTracks = data.tracks
-      });
+      })
+
       this.spotify.getData('artists/' + this.artistId + '/albums?country=US').subscribe(data => {
         this.albums = null;
         this.albums = data.items
-      });
+      })
     });
 
   }
