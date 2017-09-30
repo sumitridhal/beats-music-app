@@ -16,7 +16,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
   public topTracks: any;
   public albums: any;
   img: string = '';
-  name: string = 'artist';
+  name: string = '';
   about: any;
   headerImages: string = '';
 
@@ -28,6 +28,7 @@ export class ArtistComponent implements OnInit, OnDestroy {
     // Get parent ActivatedRoute of this route.
     this._subscription1 = this.route.params.subscribe(params => {
       this.artistId = params['id'];
+      this.headerImages = null;
       console.log(params);
 
       this.spotify.getLocalMeta(this.artistId).subscribe(data => {
@@ -40,7 +41,10 @@ export class ArtistComponent implements OnInit, OnDestroy {
       this.spotify.getData('artists/' + this.artistId).subscribe(data => {
         this.img = data.images[0].url;
         this.name = data.name
-        this.artistMeta = data
+        this.artistMeta = data;
+        if(!this.headerImages) {
+          this.headerImages = this.img;
+        }
       });
 
       this.spotify.getData('artists/' + this.artistId + '/top-tracks?country=US').subscribe(data => {

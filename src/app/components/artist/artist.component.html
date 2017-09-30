@@ -1,4 +1,4 @@
-<header class="artist-header" [ngStyle]="{'background-image': 'url(' + img + ')'}">
+<header class="artist-header" [ngStyle]="{'background-image': 'url(' + headerImages + ')'}">
   <h1 class="large">{{ name }}</h1>
   <div class="header-buttons">
     <button class="big ui button green">PLAY</button>
@@ -8,7 +8,7 @@
     <div class="ui secondary pointing menu">
       <a class="active item">Overview</a>
       <a class="item">Related Artists</a>
-      <a class="item" routerLink="/bio/{{artistMeta.id}}">About</a>
+      <a class="item" routerLink="/bio/{{artistId}}">About</a>
     </div>
   </div>
 </header>

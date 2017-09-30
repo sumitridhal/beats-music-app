@@ -16,7 +16,7 @@ export class BioComponent implements OnInit, OnDestroy {
   artistMeta: any;
   // @ViewChild('target') target:ElementRef;
   img: string = '';
-  name: string = 'artist';
+  name: string = '';
   bio: any;
 
   constructor(spotify: SpotifyLocalService, private route: ActivatedRoute) {
