@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./controller.component.css']
 })
 export class ControllerComponent implements OnInit {
-  private currentPlaying;
-  private currentPostion: string = '0:00'
-  private currentDuration: string = '4:30'
+  public currentPlaying;
+  public currentPostion: string = '0:00'
+  public currentDuration: string = '4:30'
   isPlaying: boolean = true;
   progress: number = 40;
 

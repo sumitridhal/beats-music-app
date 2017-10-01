@@ -18,7 +18,7 @@ import 'rxjs/add/operator/delay';
 export class SpotifyLocalService {
   private access_token: any;
   private url: string = 'https://api.spotify.com/v1/';
-  private aws: string = 'http://ec2-54-69-27-164.us-west-2.compute.amazonaws.com:3000';
+  private aws: string = 'http://localhost:3000';
   public newReleases: BehaviorSubject<{}> = new BehaviorSubject({});
   public artistList: BehaviorSubject<{}> = new BehaviorSubject({});
   public spotifyPlaylist: BehaviorSubject<{}> = new BehaviorSubject({});
