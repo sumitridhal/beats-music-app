@@ -1,0 +1,10 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@fontName : Circular;
+@importGoogleFonts : false;
+
+@headerFont        : Circular, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont          : Circular, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@fontSmoothing     : antialiased;
