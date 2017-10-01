@@ -154,6 +154,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_cards_artist_card_artist_card_component__ = __webpack_require__("../../../../../src/app/components/cards/artist-card/artist-card.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_cards_genre_card_genre_card_component__ = __webpack_require__("../../../../../src/app/components/cards/genre-card/genre-card.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pipe_millisecond_pipe__ = __webpack_require__("../../../../../src/app/pipe/millisecond.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_bio_bio_component__ = __webpack_require__("../../../../../src/app/components/bio/bio.component.ts");
 /* unused harmony export spotifyAuthFactory */
 /* unused harmony export firebaseConfig */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
@@ -199,6 +200,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 function spotifyAuthFactory(spotifyAuth) {
     return function () { return spotifyAuth.clientCredentials(); };
 }
@@ -219,6 +221,7 @@ var routes = [
     { path: 'songs', component: __WEBPACK_IMPORTED_MODULE_19__components_browse_browse_component__["a" /* BrowseComponent */] },
     { path: 'album', component: __WEBPACK_IMPORTED_MODULE_19__components_browse_browse_component__["a" /* BrowseComponent */] },
     { path: 'artist/:id', component: __WEBPACK_IMPORTED_MODULE_23__components_artist_artist_component__["a" /* ArtistComponent */] },
+    { path: 'bio/:id', component: __WEBPACK_IMPORTED_MODULE_33__components_bio_bio_component__["a" /* BioComponent */] },
     { path: 'playlist', component: __WEBPACK_IMPORTED_MODULE_24__components_playlist_playlist_component__["a" /* PlaylistComponent */] }
 ];
 var AppModule = (function () {
@@ -243,7 +246,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_29__components_cards_playlist_card_playlist_card_component__["a" /* PlaylistCardComponent */],
                 __WEBPACK_IMPORTED_MODULE_30__components_cards_artist_card_artist_card_component__["a" /* ArtistCardComponent */],
                 __WEBPACK_IMPORTED_MODULE_31__components_cards_genre_card_genre_card_component__["a" /* GenreCardComponent */],
-                __WEBPACK_IMPORTED_MODULE_32__pipe_millisecond_pipe__["a" /* MillisecondPipe */]
+                __WEBPACK_IMPORTED_MODULE_32__pipe_millisecond_pipe__["a" /* MillisecondPipe */],
+                __WEBPACK_IMPORTED_MODULE_33__components_bio_bio_component__["a" /* BioComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["a" /* BrowserModule */],
@@ -363,7 +367,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/artist/artist.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"artist-header\" [ngStyle]=\"{'background-image': 'url(' + artistMeta.images[0].url + ')'}\">\r\n  <h1 class=\"large\">{{ artistMeta.name }}</h1>\r\n  <div class=\"header-buttons\">\r\n    <button class=\"big ui button green\">PLAY</button>\r\n    <button class=\"big ui button black\">FAVORITE</button>\r\n  </div>\r\n  <div class=\"ui center aligned container\">\r\n    <div class=\"ui secondary pointing menu\">\r\n      <a class=\"active item\">Overview</a>\r\n      <a class=\"item\">Related Artists</a>\r\n      <a class=\"item\">About</a>\r\n    </div>\r\n  </div>\r\n</header>\r\n\r\n<table class=\"ui very basic celled table\">\r\n  <thead>\r\n    <tr>\r\n      <th colspan=\"8\">\r\n        <span>SONGS</span>\r\n        <div class=\"ui buttons\">\r\n          <button class=\"ui button active\">New</button>\r\n          <button class=\"ui button\">Popular</button>\r\n          <button class=\"ui button\">Trend</button>\r\n        </div>\r\n        <div class=\"ui right floated small button active\">\r\n          View All\r\n        </div>\r\n        <div class=\"ui right floated small button active\">\r\n          More\r\n        </div>\r\n      </th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr *ngFor='let t of topTracks; let i=index;'>\r\n      <td class=\"collapsing\">\r\n        <img class=\"ui mini spaced image\" src=\"{{ t.album.images[0].url }}\">\r\n      </td>\r\n      <td class=\"collapsing\">{{ i+1 }}</td>\r\n      <td class=\"collapsing\">\r\n        <i class=\"plus icon\"></i>\r\n      </td>\r\n      <td>{{ t.name }}</td>\r\n      <td>\r\n        <span>{{ t.album.name }}</span>\r\n      </td>\r\n      <td class=\"collapsing\">{{ t.duration_ms | millisecond }}</td>\r\n      <td class=\"collapsing\">\r\n        <i class=\"heart icon\" [ngClass]=\"{ 'empty': t.popularity < 85 }\"></i>\r\n      </td>\r\n      <td class=\"collapsing\">\r\n        <i class=\"ellipsis horizontal icon\"></i>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n\r\n<div class=\"ui box\">\r\n  <div class=\"head\">\r\n    <span>ALBUM</span>\r\n    <div class=\"ui buttons\">\r\n      <button class=\"ui button active\">New</button>\r\n      <button class=\"ui button\">Popular</button>\r\n      <button class=\"ui button\">Trend</button>\r\n    </div>\r\n    <div class=\"ui right floated small button active\">\r\n      View All\r\n    </div>\r\n    <div class=\"ui right floated small button active\">\r\n      More\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"ui six stackable special cards\">\r\n    <app-song-card *ngFor='let a of albums; let i=index' [name]=\"a.name\" [meta]='a.artists[0].name' [img]='a.images[0].url'></app-song-card>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<header class=\"artist-header\" [ngStyle]=\"{'background-image': 'url(' + headerImages + ')'}\">\r\n  <h1 class=\"large\">{{ name }}</h1>\r\n  <div class=\"header-buttons\">\r\n    <button class=\"big ui button green\">PLAY</button>\r\n    <button class=\"big ui button black\">FAVORITE</button>\r\n  </div>\r\n  <div class=\"ui center aligned container\">\r\n    <div class=\"ui secondary pointing menu\">\r\n      <a class=\"active item\">Overview</a>\r\n      <a class=\"item\">Related Artists</a>\r\n      <a class=\"item\" routerLink=\"/bio/{{artistId}}\">About</a>\r\n    </div>\r\n  </div>\r\n</header>\r\n\r\n<table class=\"ui very basic celled table\">\r\n  <thead>\r\n    <tr>\r\n      <th colspan=\"8\">\r\n        <span>SONGS</span>\r\n        <div class=\"ui buttons\">\r\n          <button class=\"ui button active\">New</button>\r\n          <button class=\"ui button\">Popular</button>\r\n          <button class=\"ui button\">Trend</button>\r\n        </div>\r\n        <div class=\"ui right floated small button active\">\r\n          View All\r\n        </div>\r\n        <div class=\"ui right floated small button active\">\r\n          More\r\n        </div>\r\n      </th>\r\n    </tr>\r\n  </thead>\r\n  <tbody>\r\n    <tr *ngFor='let t of topTracks; let i=index;'>\r\n      <td class=\"collapsing\">\r\n        <img class=\"ui mini spaced image\" src=\"{{ t.album.images[0].url }}\">\r\n      </td>\r\n      <td class=\"collapsing\">{{ i+1 }}</td>\r\n      <td class=\"collapsing\">\r\n        <i class=\"plus icon\"></i>\r\n      </td>\r\n      <td>{{ t.name }}</td>\r\n      <td>\r\n        <span>{{ t.album.name }}</span>\r\n      </td>\r\n      <td class=\"collapsing\">{{ t.duration_ms | millisecond }}</td>\r\n      <td class=\"collapsing\">\r\n        <i class=\"heart icon\" [ngClass]=\"{ 'empty': t.popularity < 85 }\"></i>\r\n      </td>\r\n      <td class=\"collapsing\">\r\n        <i class=\"ellipsis horizontal icon\"></i>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n\r\n<div class=\"ui box\">\r\n  <div class=\"head\">\r\n    <span>ALBUM</span>\r\n    <div class=\"ui buttons\">\r\n      <button class=\"ui button active\">New</button>\r\n      <button class=\"ui button\">Popular</button>\r\n      <button class=\"ui button\">Trend</button>\r\n    </div>\r\n    <div class=\"ui right floated small button active\">\r\n      View All\r\n    </div>\r\n    <div class=\"ui right floated small button active\">\r\n      More\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"ui six stackable special cards\">\r\n    <app-song-card *ngFor='let a of albums; let i=index' [name]=\"a.name\" [meta]='a.artists[0].name' [img]='a.images[0].url'></app-song-card>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -390,6 +394,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ArtistComponent = (function () {
     function ArtistComponent(spotify, route) {
         this.route = route;
+        this.img = '';
+        this.name = '';
+        this.headerImages = '';
         this.spotify = spotify;
     }
     ArtistComponent.prototype.ngOnInit = function () {
@@ -398,7 +405,24 @@ var ArtistComponent = (function () {
         this._subscription1 = this.route.params.subscribe(function (params) {
             _this.artistId = params['id'];
             console.log(params);
-            _this.spotify.getData('artists/' + _this.artistId).subscribe(function (data) { return _this.artistMeta = data; });
+            _this.spotify.getLocalMeta(_this.artistId).subscribe(function (data) {
+                _this.headerImages = null;
+                if (data) {
+                    _this.about = data.bio;
+                    _this.headerImages = data.headerImages[0].url;
+                }
+                else {
+                    _this.headerImages = _this.img;
+                }
+            });
+            _this.spotify.getData('artists/' + _this.artistId).subscribe(function (data) {
+                _this.img = data.images[0].url;
+                _this.name = data.name;
+                _this.artistMeta = data;
+                if (!_this.headerImages) {
+                    _this.headerImages = _this.img;
+                }
+            });
             _this.spotify.getData('artists/' + _this.artistId + '/top-tracks?country=US').subscribe(function (data) {
                 _this.topTracks = null;
                 _this.topTracks = data.tracks;
@@ -425,6 +449,99 @@ var ArtistComponent = (function () {
 }());
 
 //# sourceMappingURL=artist.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/bio/bio.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".body {\r\n  background-color: rgba(0, 0, 0, .5) !important;\r\n}\r\n\r\n.ui.box {\r\n  height: 100vh;\r\n  border: none;\r\n  background-color: rgba(0, 0, 0, .6);\r\n  margin: 0rem -3rem;\r\n  border-radius: unset;\r\n  color: #fff;\r\n}\r\n\r\n.ui.box:before,.backgroung.img {\r\n  content: attr(data-img);\r\n  display: block;\r\n  height: 110vh;\r\n  width: 110vw;\r\n  opacity: .99;\r\n  position: absolute;\r\n  -webkit-filter: blur(15px) brightness(.5);\r\n  z-index: -1;\r\n}\r\n\r\n.ui.box:before,.backgroung.img {\r\n  background-image: attr(data-img);\r\n  /*background-image: url(https://i.scdn.co/image/a6b50b62941f169aea7a48039a509f643c8c69e3);*/\r\n  background-repeat: no-repeat;\r\n  background-position: center center;\r\n  background-size: cover;\r\n  margin-left: -24px;\r\n}\r\n\r\n.ui.card>.content>.header, .ui.cards>.card>.content>.header {\r\n  color: #FFF;\r\n  font-size: 24px;\r\n  font-weight: 100;\r\n  font-weight: lighter;\r\n  line-height: normal;\r\n  outline: 0 none;\r\n  text-decoration: none;\r\n  text-rendering: optimizelegibility;\r\n}\r\n\r\n.ui.block.inner {\r\n  padding: 6em 18.5em 0em 18.5em;\r\n  line-height: 1em;\r\n  outline: 0 none;\r\n  text-decoration: none;\r\n  text-rendering: optimizelegibility;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.head.bold {\r\n  margin: 30px auto;\r\n  padding-bottom: 5px;\r\n  color: #fff;\r\n  border-bottom: 1px solid #222326;\r\n}\r\n\r\n.head.bold span {\r\n  font-size: 36px;\r\n  font-weight: 100;\r\n  font-weight: light;\r\n}\r\n\r\n.ui.three.cards>.card {\r\n  border: none;\r\n  border-radius: unset;\r\n  box-shadow: none;\r\n}\r\n\r\n.ui.card>.content, .ui.cards>.card>.content {\r\n  padding: 1em 0em;\r\n}\r\n\r\n.separator-container {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  -webkit-box-pack: justify;\r\n      -ms-flex-pack: justify;\r\n          justify-content: space-between;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  width: 100%;\r\n  margin-top: 8px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.separator-line {\r\n  width: 25px;\r\n  height: 1px;\r\n  background-color: hsla(0, 0%, 100%, .6);\r\n  margin: 20px 0;\r\n}\r\n\r\n.separator-text {\r\n  color: hsla(0, 0%, 100%, .6)!important;\r\n  text-align: center;\r\n  text-transform: uppercase;\r\n  letter-spacing: 2px;\r\n  font-size: 14px;\r\n  margin: 0 6px;\r\n  line-height: 22px!important;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/bio/bio.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"ui box transparent\" [attr.data-img]=\"img\">\n  <div class=\"backgroung img\" [ngStyle]=\"{'background-image': 'url(' + img + ')'}\"></div>\n  <div class=\"ui block inner\">\n    <div class=\"head bold\">\n      <span>About Artist</span>\n    </div>\n    <div class=\"ui three stackable special cards\">\n      <div class=\"centered fluid card\" style=\"width: calc(33.33333333% + 0.8em);\">\n        <div class=\"blurring dimmable image cover-art actionable\">\n          <img src=\"{{img}}\" asyc>\n        </div>\n        <div class=\"content\">\n          <div class=\"header\">{{name}}</div>\n        </div>\n      </div>\n\n      <div class=\"centered fluid card\" style=\"padding: 0 20px; width: calc(33.33333333% + 15em);\">\n        <div class=\"content\">\n          <div class=\"separator-container\">\n            <!-- <div class=\"separator-line\"></div> -->\n            <div class=\"separator-text\">{{bio}}</div>\n            <!-- <div class=\"separator-line\"></div> -->\n          </div>\n          <div class=\"meta\">\n            <span></span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/bio/bio.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_spotify_service__ = __webpack_require__("../../../../../src/app/services/spotify.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BioComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var BioComponent = (function () {
+    function BioComponent(spotify, route) {
+        var _this = this;
+        this.route = route;
+        // @ViewChild('target') target:ElementRef;
+        this.img = '';
+        this.name = '';
+        this.spotify = spotify;
+        this._subscription1 = this.route.params.subscribe(function (params) {
+            _this.artistId = params['id'];
+            console.log(params);
+            _this.spotify.getData('artists/' + _this.artistId).subscribe(function (data) {
+                _this.artistMeta = null;
+                _this.artistMeta = data;
+                _this.img = data.images[0].url;
+                _this.name = data.name;
+            });
+            _this.spotify.getLocalMeta(_this.artistId).subscribe(function (data) {
+                if (data) {
+                    _this.bio = data.bio;
+                }
+            });
+        });
+    }
+    BioComponent.prototype.ngOnInit = function () {
+    };
+    // ngAfterViewInit(): void {
+    //   this.target.nativeElement.style.color = "blue";
+    // }
+    BioComponent.prototype.ngOnDestroy = function () {
+        this._subscription1.unsubscribe();
+    };
+    BioComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_10" /* Component */])({
+            selector: 'app-bio',
+            template: __webpack_require__("../../../../../src/app/components/bio/bio.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/bio/bio.component.css")]
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_spotify_service__["a" /* SpotifyLocalService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_spotify_service__["a" /* SpotifyLocalService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* ActivatedRoute */]) === "function" && _b || Object])
+    ], BioComponent);
+    return BioComponent;
+    var _a, _b;
+}());
+
+//# sourceMappingURL=bio.component.js.map
 
 /***/ }),
 
@@ -933,7 +1050,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui text fixed top menu\">\r\n  <a class=\"item\" (click)=\"sbToggle($event)\">\r\n    <img src=\"assets/img/Beats-Music-Logo-2.png\">\r\n  </a>\r\n  <!-- <a class=\"item\" routerLink=\"/home\" [ngClass]=\"{ 'active selected': aURL == '/home' }\">Home</a>\r\n  <a class=\"item\" routerLink=\"/chat\" [ngClass]=\"{ 'active selected': aURL == '/chat' }\">Chatroom</a>\r\n  <a class=\"item\" routerLink=\"/user\" [ngClass]=\"{ 'active selected': aURL == '/user' }\">Users</a> -->\r\n  <div class=\"right menu\">\r\n    <a class=\"item\" *ngIf=\"isAuth && !custom\" (click)=\"logout()\">Logout</a>\r\n    <div class=\"ui item dropdown\" suiDropdown *ngIf=\"custom\">\r\n      <div class=\"text\">\r\n        <img class=\"ui avatar image\" src=\"{{user.selected.img}}\"> {{user.selected.name}}\r\n      </div>\r\n      <i class=\"dropdown icon\"></i>\r\n      <div class=\"menu\" suiDropdownMenu>\r\n        <!-- <a class=\"right item\" *ngIf=\"isAuth\" (click)=\"logout()\">Logout</a> -->\r\n        <div class=\"item\" *ngFor=\"let item of user.options\" (click)=\"changeUser(item)\" [ngClass]=\"{ 'active selected': user.selected.name == item.name }\">\r\n          <img class=\"ui avatar image\" src=\"{{item.img}}\"> {{item.name}}\r\n        </div>\r\n        <a class=\"item\" *ngIf=\"isAuth\" (click)=\"cLogout()\">Logout</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"ui dropdown item\" suiDropdown *ngIf=\"!isAuth && !custom\">\r\n      Login\r\n      <i class=\"dropdown icon\"></i>\r\n      <div class=\"menu\" suiDropdownMenu>\r\n        <div class=\"item\" (click)=\"customLogin('Custom User')\">Custom</div>\r\n        <div class=\"item\" (click)=\"login('Anonymous')\">Anonymous</div>\r\n        <div class=\"item\" (click)=\"login('Facebook')\">Facebook</div>\r\n        <div class=\"item\" (click)=\"login('Google')\">Google</div>\r\n        <!-- <div class=\"item\" (click)=\"login('User')\">User</div> -->\r\n        <div class=\"item\" (click)=\"open('User')\">User</div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<ng-template let-context let-modal=\"modal\" #modalTemplate>\r\n  <div class=\"header\">User Login</div>\r\n  <!-- <div class=\"content\">\r\n    <p>{{ context.data }}</p>\r\n  </div> -->\r\n  <div class=\"main ui container\">\r\n    <form class=\"ui form\">\r\n      <div class=\"fields\">\r\n        <div class=\"ten wide field\">\r\n          <label>Email Address</label>\r\n          <input type=\"email\" [(ngModel)]=\"mEmail\" name=\"email\" placeholder=\"Email Address\" email>\r\n        </div>\r\n        <div class=\"ten wide field\">\r\n          <label>Password</label>\r\n          <input type=\"password\" [(ngModel)]=\"mPass\" name=\"password\" placeholder=\"Password\">\r\n        </div>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  <div class=\"actions\">\r\n    <button class=\"ui red button\" (click)=\"modal.deny('denied')\">Cancel</button>\r\n    <button class=\"ui green button\" (click)=\"modal.approve({email: mEmail, password: mPass})\" autofocus>OK</button>\r\n  </div>\r\n</ng-template>\r\n"
+module.exports = "<div class=\"ui text fixed top menu\">\r\n  <a class=\"item\" (click)=\"sbToggle($event)\">\r\n    <img src=\"assets/img/Beats-Music-Logo-2.png\">\r\n  </a>\r\n  <!-- <a class=\"item\" routerLink=\"/home\" [ngClass]=\"{ 'active selected': aURL == '/home' }\">Home</a>\r\n  <a class=\"item\" routerLink=\"/chat\" [ngClass]=\"{ 'active selected': aURL == '/chat' }\">Chatroom</a>\r\n  <a class=\"item\" routerLink=\"/user\" [ngClass]=\"{ 'active selected': aURL == '/user' }\">Users</a> -->\r\n  <div class=\"right menu\" style=\"display: none;\">\r\n    <a class=\"item\" *ngIf=\"isAuth && !custom\" (click)=\"logout()\">Logout</a>\r\n    <div class=\"ui item dropdown\" suiDropdown *ngIf=\"custom\">\r\n      <div class=\"text\">\r\n        <img class=\"ui avatar image\" src=\"{{user.selected.img}}\"> {{user.selected.name}}\r\n      </div>\r\n      <i class=\"dropdown icon\"></i>\r\n      <div class=\"menu\" suiDropdownMenu>\r\n        <!-- <a class=\"right item\" *ngIf=\"isAuth\" (click)=\"logout()\">Logout</a> -->\r\n        <div class=\"item\" *ngFor=\"let item of user.options\" (click)=\"changeUser(item)\" [ngClass]=\"{ 'active selected': user.selected.name == item.name }\">\r\n          <img class=\"ui avatar image\" src=\"{{item.img}}\"> {{item.name}}\r\n        </div>\r\n        <a class=\"item\" *ngIf=\"isAuth\" (click)=\"cLogout()\">Logout</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"ui dropdown item\" suiDropdown *ngIf=\"!isAuth && !custom\">\r\n      Login\r\n      <i class=\"dropdown icon\"></i>\r\n      <div class=\"menu\" suiDropdownMenu>\r\n        <div class=\"item\" (click)=\"customLogin('Custom User')\">Custom</div>\r\n        <div class=\"item\" (click)=\"login('Anonymous')\">Anonymous</div>\r\n        <div class=\"item\" (click)=\"login('Facebook')\">Facebook</div>\r\n        <div class=\"item\" (click)=\"login('Google')\">Google</div>\r\n        <!-- <div class=\"item\" (click)=\"login('User')\">User</div> -->\r\n        <div class=\"item\" (click)=\"open('User')\">User</div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<ng-template let-context let-modal=\"modal\" #modalTemplate>\r\n  <div class=\"header\">User Login</div>\r\n  <!-- <div class=\"content\">\r\n    <p>{{ context.data }}</p>\r\n  </div> -->\r\n  <div class=\"main ui container\">\r\n    <form class=\"ui form\">\r\n      <div class=\"fields\">\r\n        <div class=\"ten wide field\">\r\n          <label>Email Address</label>\r\n          <input type=\"email\" [(ngModel)]=\"mEmail\" name=\"email\" placeholder=\"Email Address\" email>\r\n        </div>\r\n        <div class=\"ten wide field\">\r\n          <label>Password</label>\r\n          <input type=\"password\" [(ngModel)]=\"mPass\" name=\"password\" placeholder=\"Password\">\r\n        </div>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  <div class=\"actions\">\r\n    <button class=\"ui red button\" (click)=\"modal.deny('denied')\">Cancel</button>\r\n    <button class=\"ui green button\" (click)=\"modal.approve({email: mEmail, password: mPass})\" autofocus>OK</button>\r\n  </div>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -1876,6 +1993,10 @@ var MusixmatchService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_catch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_observable_forkJoin__ = __webpack_require__("../../../../rxjs/add/observable/forkJoin.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_observable_forkJoin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_observable_forkJoin__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_observable_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_delay__ = __webpack_require__("../../../../rxjs/add/operator/delay.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_delay__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SpotifyLocalService; });
 //https://atchai.com/blog/2016-05-03-in-search-of-the-perfect-music-dataset/
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1887,6 +2008,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -2010,6 +2133,93 @@ var SpotifyLocalService = (function () {
         })
             .catch(function (err) { return Promise.resolve(); });
         ;
+    };
+    SpotifyLocalService.prototype.getLocalMeta = function (id) {
+        var meta = [
+            {
+                "id": "04gDigrS5kc9YWfZHwBETP",
+                "bio": "MAROON 5 IS AN AMERICAN POP ROCK BAND THAT ORIGINATED IN LOS ANGELES, CALIFORNIA. IT CURRENTLY CONSISTS OF LEAD VOCALIST ADAM LEVINE, KEYBOARDIST AND RHYTHM GUITARIST JESSE CARMICHAEL, BASSIST MICKEY MADDEN, LEAD GUITARIST JAMES VALENTINE, DRUMMER MATT FLYNN AND KEYBOARDIST PJ MORTON. A MIX OF POLISHED POP/ROCK AND NEO-SOUL MADE MAROON 5 ONE OF THE MOST POPULAR BANDS OF THE NEW MILLENNIUM, WITH SONGS LIKE \"THIS LOVE, \" \"SHE WILL BE LOVED, \" AND \"MAKES ME WONDER\" ALL TOPPING THE CHARTS WORLDWIDE.",
+                "headerImages": [
+                    {
+                        "height": 641,
+                        "url": "https://i.scdn.co/image/d5d36ef5919bb439fb457549fdc4a0dcfe7b12f4",
+                        "width": 1495
+                    },
+                    {
+                        "height": 1140,
+                        "url": "https://i.scdn.co/image/1b030260de8e8ac65c60fd28c55def8229d56d79",
+                        "width": 2660
+                    },
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/5c8d92ef8f02482fbafcdaf4c54a5036795bfb50",
+                        "width": 1494
+                    }
+                ]
+            }, {
+                "id": "06HL4z0CvFAxyc27GXpf02",
+                "bio": "Taylor Swift is that rarest of pop phenomena: a superstar who managed to completely cross over from country to the mainstream. Other singers performed similar moves -- notably, Dolly Parton and Willie Nelson both became enduring mainstream icons based on their '70s work -- but Swift shed her country roots like they were a second skin; it was a necessary molting to reveal she was perhaps the sharpest, savviest populist singer/songwriter of her generation, one who could harness the Zeitgeist and turn it personal and, just as impressively, perform the reverse.",
+                "headerImages": [
+                    {
+                        "height": 641,
+                        "url": "https://i.scdn.co/image/fedadb793b59f10bc5946043196e932530604a59",
+                        "width": 1495
+                    },
+                    {
+                        "height": 1140,
+                        "url": "https://i.scdn.co/image/fb11623281343e336de1cd133ac3a02cea038702",
+                        "width": 2660
+                    },
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/e0a14d9225567dd6b5eb979dcbcd197896ff91de",
+                        "width": 1494
+                    }
+                ]
+            }, {
+                "id": "4dpARuHxo51G3z768sgnrY",
+                "bio": "When the U.K. press began dubbing Adele \"the next Amy Winehouse\" in late 2007, the hype didn't touch upon the singer/songwriter influence found in the Londoner's music. Influenced by Roberta Flack and Suzanne Vega as much as Jill Scott, Adele soon became a phenomenon in her own right; her second album, 21, eventually sold an estimated 30 million copies worldwide, making her one of the few sales successes in an age of digital streaming.",
+                "headerImages": [
+                    {
+                        "height": null,
+                        "url": "https://artistheader.scdn.co/4dpARuHxo51G3z768sgnrY/desktop_cat/4e6467c0-2f56-48ee-b8e1-78cb560a8222",
+                        "width": null
+                    }
+                ]
+            }, {
+                "id": "5Pwc4xIPtQLFEnJriah9YJ",
+                "bio": "Featuring the anthemic songwriting of Ryan Tedder, and balancing pop with alternative rock influences, OneRepublic became a regular presence on the charts of North America, Europe, and Australasia beginning with their 2007 debut. A Timbaland remix of its lead single, \"Apologize,\" landed in the Top Three in well over dozen countries and was, at the time, the best-selling digital download in U.S. history.",
+                "headerImages": [
+                    {
+                        "height": null,
+                        "url": "https://i.scdn.co/image/258cd5da9bdf6dfcab8c3fe3c47f398b771d38bc",
+                        "width": null
+                    }
+                ]
+            }, {
+                "id": "6VuMaDnrHyPL1p4EHjYLi7",
+                "bio": "American pop singer/songwriter Charlie Puth began his career with acoustic covers uploaded to YouTube. Ellen DeGeneres was an early supporter and she signed the Berklee College alum -- along with his duet partner, Emily Luther -- to her Warner Bros.-affiliated ElevenEleven label. Though nothing materialized from that deal, Puth eventually signed with Atlantic. In early 2015, he released his debut single, \"Marvin Gaye,\" a duet with Meghan Trainor. Shortly thereafter, he gained greater exposure as the co-songwriter, pianist, and featured vocalist on Wiz Khalifa's \"See You Again,\" recorded as a tribute to actor Paul Walker for the soundtrack to Furious 7.",
+                "headerImages": [
+                    {
+                        "height": null,
+                        "url": "https://i.scdn.co/image/4c6a7087672062b84b5f77241106122004da1fbd",
+                        "width": null
+                    }
+                ]
+            }, {
+                "id": "1UTPBmNbXNTittyMJrNkvw",
+                "bio": "Blake Shelton may have been an unlikely candidate for superstardom but that's hardly due to a lack of charisma. Shelton possessed a warm, masculine ease that lent his rowdier numbers a sense of sly humor but this relaxed touch also made him an effective crooner of ballads, the ace in the hole that helped him cross over from country to the mainstream in the 2010s.",
+                "headerImages": [
+                    {
+                        "height": null,
+                        "url": "https://i.scdn.co/image/5b8668d9da9af210360b7af8fdca2bff543648db",
+                        "width": null
+                    }
+                ]
+            }
+        ];
+        var result = meta.filter(function (x) { return x.id == id; });
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].of(result[0]).delay(0);
     };
     SpotifyLocalService.prototype.getNewReleases = function () {
         return this.newReleases.asObservable();
